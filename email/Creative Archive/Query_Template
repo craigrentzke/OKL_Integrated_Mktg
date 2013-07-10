@@ -1,0 +1,39 @@
+SELECT DISTINCT z.customer_id,z.sbs_segment, z.total_num_purchases, ISNULL(e.Count,0) AS count, z.token, z.bucket
+FROM(
+SELECT c.customer_id, c.sbs_segment, c.total_num_purchases, c.token, c.bucket
+FROM(
+SELECT a.customer_id, b.sbs_segment, b.total_num_purchases, a.token, b.bucket,
+CASE
+WHEN (LOWER(LEFT(DATENAME(weekday,getdate()),3)) + substring(CONVERT(VARCHAR,getdate(),22), 19,2)) = 'sunam'
+THEN sun_am
+WHEN (LOWER(LEFT(DATENAME(weekday,getdate()),3)) + substring(CONVERT(VARCHAR,getdate(),22), 19,2)) = 'sunpm'
+THEN sun_pm
+WHEN (LOWER(LEFT(DATENAME(weekday,getdate()),3)) + substring(CONVERT(VARCHAR,getdate(),22), 19,2)) = 'monam'
+THEN mon_am
+WHEN (LOWER(LEFT(DATENAME(weekday,getdate()),3)) + substring(CONVERT(VARCHAR,getdate(),22), 19,2)) = 'monpm'
+THEN mon_pm
+WHEN (LOWER(LEFT(DATENAME(weekday,getdate()),3)) + substring(CONVERT(VARCHAR,getdate(),22), 19,2)) = 'tueam'
+THEN tue_am
+WHEN (LOWER(LEFT(DATENAME(weekday,getdate()),3)) + substring(CONVERT(VARCHAR,getdate(),22), 19,2)) = 'tuepm'
+THEN tue_pm
+WHEN LOWER(LEFT(DATENAME(weekday,getdate()),3)) = 'wed'
+THEN wed_am
+WHEN (LOWER(LEFT(DATENAME(weekday,getdate()),3)) + substring(CONVERT(VARCHAR,getdate(),22), 19,2)) = 'thuam'
+THEN thu_am
+WHEN (LOWER(LEFT(DATENAME(weekday,getdate()),3)) + substring(CONVERT(VARCHAR,getdate(),22), 19,2)) = 'thupm'
+THEN thu_pm
+WHEN LOWER(LEFT(DATENAME(weekday,getdate()),3)) = 'fri'
+THEN fri_am
+WHEN LOWER(LEFT(DATENAME(weekday,getdate()),3)) = 'sat'
+THEN sat_am
+END as sub
+FROM [Subscribers and preferences -- PRODUCTION] a
+JOIN [audience_builder_source -- PRODUCTION] b
+ON a.customer_id = b.customer_id
+WHERE 
+b.sbs_segment in('LPI','HPI','HVHC')
+) as c
+WHERE sub = 1
+) as z
+LEFT JOIN [master_open_b] e
+ON z.customer_id = e.SubscriberKey
