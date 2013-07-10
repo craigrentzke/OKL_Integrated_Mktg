@@ -2,10 +2,14 @@
 <head>
 %%[
 SET @RPdate = Now()
+
+SET @dayofweek = Format(Now(),"dddd")
 SET @RPmonth = DatePart(@RPdate,"M")
 SET @RPday = DatePart(@RPdate,"D")
 SET @RPyear = DatePart(@RPdate,"Y")
 SET @RPdate = Concat(@RPyear,@RPmonth,@RPday,"0")
+
+SET @RPpixel = Concat("http://pixel.monitor1.returnpath.net/pixel.gif?r=6899c41dcc18ee37d5f9045d1dda6570a8093c0f&date=",@RPmonth,"/",@RPday,"/",@RPyear)
 ]%%
 <!-- rpcampaign: %%=v(@RPdate)=%%-->
 <!-- ONE KINGS LANE MASTER TEMPLATE 2x3 VER 1.2 02/12/2013 -->
@@ -29,7 +33,7 @@ SET @Count = count
 SET @header_choice = 0
 
 /* Set day and time */
-SET @Day_of_Sale = "06/24/2013"
+SET @Day_of_Sale = "06/10/2013"
 SET @SentDate = Now()
 SET @Email_Type = "am"
 SET @date_str = xtshortdate
@@ -96,122 +100,102 @@ for @i = 1 to Rowcount(@Template_UI_Email_SBS) do
                                 SET @fittysen1 = Field(@rowXX,'fittysen1')
                                 SET @fittysentitle1 = Field(@rowXX,'fittysentitle1')
                                 SET @fittysendescription1 = Field(@rowXX,'fittysendescription1')
-                                SET @fittysensummary1 = Field(@rowXX,'fittysensummary1')
                                 SET @VMF_Sale1 = Field(@rowXX,'VMF_Sale1')
                                 SET @VMF_Link1 = Field(@rowXX,'VMF_Link1')
                                 SET @fittysen2 = Field(@rowXX,'fittysen2')
                                 SET @fittysentitle2 = Field(@rowXX,'fittysentitle2')
                                 SET @fittysendescription2 = Field(@rowXX,'fittysendescription2')
-                                SET @fittysensummary2 = Field(@rowXX,'fittysensummary2')
                                 SET @VMF_Sale2 = Field(@rowXX,'VMF_Sale2')
                                 SET @VMF_Link2 = Field(@rowXX,'VMF_Link2')
                                 SET @fittysen3 = Field(@rowXX,'fittysen3')
                                 SET @fittysentitle3 = Field(@rowXX,'fittysentitle3')
                                 SET @fittysendescription3 = Field(@rowXX,'fittysendescription3')
-                                SET @fittysensummary3 = Field(@rowXX,'fittysensummary3')
                                 SET @VMF_Sale3 = Field(@rowXX,'VMF_Sale3')
                                 SET @VMF_Link3 = Field(@rowXX,'VMF_Link3')
                                 SET @fittysen4 = Field(@rowXX,'fittysen4')
                                 SET @fittysentitle4 = Field(@rowXX,'fittysentitle4')
                                 SET @fittysendescription4 = Field(@rowXX,'fittysendescription4')
-                                SET @fittysensummary4 = Field(@rowXX,'fittysensummary4')
                                 SET @VMF_Sale4 = Field(@rowXX,'VMF_Sale4')
                                 SET @VMF_Link4 = Field(@rowXX,'VMF_Link4')
                                 SET @fittysen5 = Field(@rowXX,'fittysen5')
                                 SET @fittysentitle5 = Field(@rowXX,'fittysentitle5')
                                 SET @fittysendescription5 = Field(@rowXX,'fittysendescription5')
-                                SET @fittysensummary5 = Field(@rowXX,'fittysensummary5')
                                 SET @VMF_Sale5 = Field(@rowXX,'VMF_Sale5')
                                 SET @VMF_Link5 = Field(@rowXX,'VMF_Link5')
                                 SET @fittysen6 = Field(@rowXX,'fittysen6')
                                 SET @fittysentitle6 = Field(@rowXX,'fittysentitle6')
                                 SET @fittysendescription6 = Field(@rowXX,'fittysendescription6')
-                                SET @fittysensummary6 = Field(@rowXX,'fittysensummary6')
                                 SET @VMF_Sale6 = Field(@rowXX,'VMF_Sale6')
                                 SET @VMF_Link6 = Field(@rowXX,'VMF_Link6')
                                 SET @fittysen7 = Field(@rowXX,'fittysen7')
                                 SET @fittysentitle7 = Field(@rowXX,'fittysentitle7')
                                 SET @fittysendescription7 = Field(@rowXX,'fittysendescription7')
-                                SET @fittysensummary7 = Field(@rowXX,'fittysensummary7')
                                 SET @VMF_Sale7 = Field(@rowXX,'VMF_Sale7')
                                 SET @VMF_Link7 = Field(@rowXX,'VMF_Link7')
                                 SET @fittysen8 = Field(@rowXX,'fittysen8')
                                 SET @fittysentitle8 = Field(@rowXX,'fittysentitle8')
                                 SET @fittysendescription8 = Field(@rowXX,'fittysendescription8')
-                                SET @fittysensummary8 = Field(@rowXX,'fittysensummary8')
                                 SET @VMF_Sale8 = Field(@rowXX,'VMF_Sale8')
                                 SET @VMF_Link8 = Field(@rowXX,'VMF_Link8')
                                 SET @fittysen9 = Field(@rowXX,'fittysen9')
                                 SET @fittysentitle9 = Field(@rowXX,'fittysentitle9')
                                 SET @fittysendescription9 = Field(@rowXX,'fittysendescription9')
-                                SET @fittysensummary9 = Field(@rowXX,'fittysensummary9')
                                 SET @VMF_Sale9 = Field(@rowXX,'VMF_Sale9')
                                 SET @VMF_Link9 = Field(@rowXX,'VMF_Link9')
                                 SET @fittysen10 = Field(@rowXX,'fittysen10')
                                 SET @fittysentitle10 = Field(@rowXX,'fittysentitle10')
                                 SET @fittysendescription10 = Field(@rowXX,'fittysendescription10')
-                                SET @fittysensummary10 = Field(@rowXX,'fittysensummary10')
                                 SET @VMF_Sale10 = Field(@rowXX,'VMF_Sale10')
                                 SET @VMF_Link10 = Field(@rowXX,'VMF_Link10')
                                 SET @fittysen11 = Field(@rowXX,'fittysen11')
                                 SET @fittysentitle11 = Field(@rowXX,'fittysentitle11')
                                 SET @fittysendescription11 = Field(@rowXX,'fittysendescription11')
-                                SET @fittysensummary11 = Field(@rowXX,'fittysensummary11')
                                 SET @VMF_Sale11 = Field(@rowXX,'VMF_Sale11')
                                 SET @VMF_Link11 = Field(@rowXX,'VMF_Link11')
                                 SET @fittysen12 = Field(@rowXX,'fittysen12')
                                 SET @fittysentitle12 = Field(@rowXX,'fittysentitle12')
                                 SET @fittysendescription12 = Field(@rowXX,'fittysendescription12')
-                                SET @fittysensummary12 = Field(@rowXX,'fittysensummary12')
                                 SET @VMF_Sale12 = Field(@rowXX,'VMF_Sale12')
                                 SET @VMF_Link12 = Field(@rowXX,'VMF_Link12')
                                 SET @fittysen13 = Field(@rowXX,'fittysen13')
                                 SET @fittysentitle13 = Field(@rowXX,'fittysentitle13')
                                 SET @fittysendescription13 = Field(@rowXX,'fittysendescription13')
-                                SET @fittysensummary13 = Field(@rowXX,'fittysensummary13')
                                 SET @VMF_Sale13 = Field(@rowXX,'VMF_Sale13')
                                 SET @VMF_Link13 = Field(@rowXX,'VMF_Link13')
                                 SET @fittysen14 = Field(@rowXX,'fittysen14')
                                 SET @fittysentitle14 = Field(@rowXX,'fittysentitle14')
                                 SET @fittysendescription14 = Field(@rowXX,'fittysendescription14')
-                                SET @fittysensummary14 = Field(@rowXX,'fittysensummary14')
                                 SET @VMF_Sale14 = Field(@rowXX,'VMF_Sale14')
 
                                 SET @VMF_Link14 = Field(@rowXX,'VMF_Link14')
                                 SET @fittysen15 = Field(@rowXX,'fittysen15')
                                 SET @fittysentitle15 = Field(@rowXX,'fittysentitle15')
                                 SET @fittysendescription15 = Field(@rowXX,'fittysendescription15')
-                                SET @fittysensummary15 = Field(@rowXX,'fittysensummary15')
                                 SET @VMF_Sale15 = Field(@rowXX,'VMF_Sale15')
                                 SET @VMF_Link15 = Field(@rowXX,'VMF_Link15')
                                 SET @fittysen16 = Field(@rowXX,'fittysen16')
                                 SET @fittysentitle16 = Field(@rowXX,'fittysentitle16')
                                 SET @fittysendescription16 = Field(@rowXX,'fittysendescription16')
-                                SET @fittysensummary16 = Field(@rowXX,'fittysensummary16')
                                 SET @VMF_Sale16 = Field(@rowXX,'VMF_Sale16')
                                 SET @VMF_Link16 = Field(@rowXX,'VMF_Link16')
                                 SET @fittysen17 = Field(@rowXX,'fittysen17')
                                 SET @fittysentitle17 = Field(@rowXX,'fittysentitle17')
                                 SET @fittysendescription17 = Field(@rowXX,'fittysendescription17')
-                                SET @fittysensummary17 = Field(@rowXX,'fittysensummary17')
                                 SET @VMF_Sale17 = Field(@rowXX,'VMF_Sale17')
                                 SET @VMF_Link17 = Field(@rowXX,'VMF_Link17')
                                 SET @fittysen18 = Field(@rowXX,'fittysen18')
                                 SET @fittysentitle18 = Field(@rowXX,'fittysentitle18')
                                 SET @fittysendescription18 = Field(@rowXX,'fittysendescription18')
-                                SET @fittysensummary18 = Field(@rowXX,'fittysensummary18')
                                 SET @VMF_Sale18 = Field(@rowXX,'VMF_Sale18')
                                 SET @VMF_Link18 = Field(@rowXX,'VMF_Link18')
                                 SET @fittysen19 = Field(@rowXX,'fittysen19')
                                 SET @fittysentitle19 = Field(@rowXX,'fittysentitle19')
                                 SET @fittysendescription19 = Field(@rowXX,'fittysendescription19')
-                                SET @fittysensummary19 = Field(@rowXX,'fittysensummary19')
                                 SET @VMF_Sale19 = Field(@rowXX,'VMF_Sale19')
                                 SET @VMF_Link19 = Field(@rowXX,'VMF_Link19')
                                 SET @fittysen20 = Field(@rowXX,'fittysen20')
                                 SET @fittysentitle20 = Field(@rowXX,'fittysentitle20')
                                 SET @fittysendescription20 = Field(@rowXX,'fittysendescription20')
-                                SET @fittysensummary20 = Field(@rowXX,'fittysensummary20')
                                 SET @VMF_Sale20 = Field(@rowXX,'VMF_Sale20')
                                 SET @VMF_Link20 = Field(@rowXX,'VMF_Link20')
                             ENDIF
@@ -1262,39 +1246,48 @@ Set @big_gift_card = concat('<td valign="top"><table border="0" cellspacing="0" 
 
 Set @gift_card = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/e-gift-card?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=Gift_Card.1"><img src="https://okl.scene7.com/is/image/OKL/electronic_gift_card?fmt=jpg&wid=194&op_sharpen=1&qlt=90,0" alt="Gift Card" border="0" style="display:block;" /></a></td></tr><tr><td height="10"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td><table border="0" cellspacing="0" cellpadding="0" width="112"><tr><td valign="top"><font style="color:#333333; font-family: Georgia, ',@Times_New_Roman,', serif; font-size: 15px;"><b>One Kings Lane Gift Card</b></font></td></tr><tr><td valign="bottom"><table border="0" cellspacing="0" cellpadding="0" width="20"><tr><td valign="bottom" style="border-bottom:1px solid #c0bcae;"><img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gif&hei=7" border="0" style="display:block;" /></td></tr></table></td></tr></table></td><td width="10"></td><td align="right" valign="top"><a href="https://www.onekingslane.com/e-gift-card?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=Gift_Card.Button.1"><img src="https://okl.scene7.com/is/image/OKL/email_refresh_button?fmt=gif&wid=74&qlt=90,0" alt="Shop Now" border="0" style="display:block;" /></a></td></tr></table></td></tr><tr><td height="7"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td><font style="color:#666666; font-family: Arial, Helvetica, sans-serif; font-size: 12px; letter-spacing: 0.60px;">GIVE THE ART OF LIVING WELL</font></td><td width="30">&nbsp;</td></tr></table></td></tr><tr><td height="5"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td valign="top"><font style="color:#666666; font-family: Georgia, ',@Times_New_Roman,', serif; font-size: 12px; letter-spacing: 0.4px;">Instant gratification: The One Kings Lane E-Gift Card is always in good taste.</font></td><td width="5">&nbsp;</td></tr></table></td></tr></table></td>')
 ]%%
-<table cellpadding="0" cellspacing="0" border="0">
-<tr>
-	<td><img src="http://p.tellapart.com/tem?c=%%=v(@campaign_path)=%%&src=MQvTZrFduqGP&suid=%%=v(@customer_id)=%%&edate=%%=v(@milli_difference)=%%&ehash=%%=MD5(emailaddr)=%%" 
-height="1" width="1" border="0" />
-    </td>
-    <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=0" height="1" width="1" border="0" />
-    </td>
-    <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=1" height="1" width="1" border="0" />
-    </td>
-    <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=2" height="1" width="1" border="0" />
-    </td>
-    <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=3" height="1" width="1" border="0" />
-    </td>
-    <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=4" height="1" width="1" border="0" />
-    </td>
-    <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=5" height="1" width="1" border="0" />
-    </td>
-    <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=6" height="1" width="1" border="0" />
-    </td>
-    <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=7" height="1" width="1" border="0" />
-    </td>
-    <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=8" height="1" width="1" border="0" />
-    </td>
-    <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=9" height="1" width="1" border="0" />
-    </td>
-</tr>
-</table>
+
 
 <table bgcolor="#ffffff" border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
 <tr><td><img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gif&wid=100" border="0" width="100" height="1" style="display:block;"><div style="display:none; color:#FFFFFF; font-size:1px;">
 %%= v(@preview_copy) =%%
 </div></td></tr>
-<custom name="opencounter" type="tracking">
+<tr>
+	<td>
+    	<table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td><img src="http://p.tellapart.com/tem?c=%%=v(@campaign_path)=%%&src=MQvTZrFduqGP&suid=%%=v(@customer_id)=%%&edate=%%=v(@milli_difference)=%%&ehash=%%=MD5(emailaddr)=%%" 
+            height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=0" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=1" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=2" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=3" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=4" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=5" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=6" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=7" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=8" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=9" height="1" width="1" border="0" />
+                </td>
+                <td>%%[IF @dayofweek == "Wednesday" or @dayofweek == "Saturday" THEN]%%<img src="%%=RedirectTo(@RPpixel)=%%" height="1" width="1" style="border:0" />%%[ENDIF]%%
+                </td>
+                <td><custom name="opencounter" type="tracking">
+                </td>
+            </tr>
+            </table>
+    </td>
+</tr>
+
 
 %%[ if @header_choice == 0 then ]%%
 %%= TreatAsContentArea("TACA_Key_Header1",@daily_header) =%%
