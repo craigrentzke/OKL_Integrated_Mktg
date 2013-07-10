@@ -1,7 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <head>
-<!-- rpcampaign: okl201306300-->
-<!-- ONE KINGS LANE MASTER TEMPLATE 2x3 VER 1.2 02/12/2013 -->
+%%[
+SET @RPdate = Now()
+
+SET @dayofweek = Format(Now(),"dddd")
+SET @RPmonth = DatePart(@RPdate,"M")
+SET @RPday = DatePart(@RPdate,"D")
+SET @RPyear = DatePart(@RPdate,"Y")
+SET @RPdate = Concat(@RPyear,@RPmonth,@RPday,"0")
+
+SET @RPpixel = Concat("http://pixel.monitor1.returnpath.net/pixel.gif?r=6899c41dcc18ee37d5f9045d1dda6570a8093c0f&c=",@RPmonth,"/",@RPday,"/",@RPyear)
+]%%
+<!-- rpcampaign: okl201307100-->
+<!-- ONE KINGS LANE MASTER TEMPLATE 2x3 VER 1.2 07/10/2013 -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>One Kings Lane</title>
 </head>
@@ -11,7 +22,7 @@
 
 %%[ 
 SET @total_daily_sales = 12
-SET @day_of_sale = "06/30/2013"
+SET @day_of_sale = "07/10/2013"
 SET @header_choice = 0
 SET @template_lookup = LookupOrderedRows("Template_UI", 0, "sale_date", "sale_date", @day_of_sale, "email_type", "am")
 SET @template_lookup_row = Row(@template_lookup, 1)
@@ -2048,6 +2059,8 @@ height="1" width="1" border="0" />
     </td>
     <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=9" height="1" width="1" border="0" />
     </td>
+    <td>%%[IF @dayofweek == "Wednesday" or @dayofweek == "Saturday" THEN]%%<img src="%%=RedirectTo(@RPpixel)=%%" height="1" width="1" style="border:0" />%%[ENDIF]%%
+    </td>
 </tr>
 </table>
 <table bgcolor="#ffffff" border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
@@ -2228,16 +2241,16 @@ for @cell_number = 1 to 4 do
         
 <!--SYMBOL PROCESSING HERE-->
 <!-- Step 1 - Change the number 5 to the position in ending soon (1,2,3 or 4) -->
-IF @cell_number == 5 THEN
+IF @cell_number == 3 THEN
 
 <!-- Step 2 Put the word after the funky symbol here i.e. Prove!^al Marketplace you would put al Marketplace -->
-SET @wordIndex = IndexOf(@Last_Chance_Sale_Title,"al Marketplace")
+SET @wordIndex = IndexOf(@Last_Chance_Sale_Title,"al Style")
 
 SET @length = Add(Subtract(length(@symbol),@wordIndex),1)
 SET @newSymbol = Substring(@symbol,@wordIndex,@length)
 
 <!-- Step 3 - Put the word(s) right before the funky symbol here i.e. Proven!^al Marketplace you would put Provenç -->
-SET @Last_Chance_Sale_Title = Concat("Provenç",@newSymbol)
+SET @Last_Chance_Sale_Title = Concat("Vintage Decor with Provenç",@newSymbol)
 
 ENDIF
 <!--END SYMBOL PROCESSING HERE-->
