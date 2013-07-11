@@ -7,16 +7,17 @@ SET @RPmonth = DatePart(@RPdate,"M")
 SET @RPday = DatePart(@RPdate,"D")
 SET @RPyear = DatePart(@RPdate,"Y")
 SET @RPdate = Concat(@RPyear,@RPmonth,@RPday,"0")
+SET @RPpixel = Concat("http://pixel.monitor1.returnpath.net/pixel.gif?r=6899c41dcc18ee37d5f9045d1dda6570a8093c0f&date=",@RPmonth,"/",@RPday,"/",@RPyear)
 
-SET @RPpixel = Concat("http://pixel.monitor1.returnpath.net/pixel.gif?r=6899c41dcc18ee37d5f9045d1dda6570a8093c0f&c=",@RPmonth,"/",@RPday,"/",@RPyear)
+
 ]%%
+
+
+
 <!-- rpcampaign: okl201306300-->
 <!-- ONE KINGS LANE MASTER TEMPLATE 2x3 VER 1.3 07/10/2013 -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>One Kings Lane</title>
-</head>
-<body>
 
 <!-- TEMPLATE VARIABLE DECLARATION START -->
 
@@ -75,6 +76,7 @@ Set @daily_sales_remainder = mod(@total_daily_sales, 5)
 ]%%
 
 %%[ 
+
 Set @preview_copy = Field(@template_lookup_row, 'preview_copy')
 Set @preview_copya = Field(@template_lookup_row, 'preview_copy')
 Set @preview_copyb = Replace(@preview_copya, ";;mdash", "&mdash;")
@@ -96,7 +98,16 @@ Set @preview_copyq = Replace(@preview_copyp, ";;clc", "&ccedil;")
 Set @preview_copyr = Replace(@preview_copyq, ";;lit", "<i>")
 Set @preview_copys = Replace(@preview_copyr, ";;auml", "&auml;")
 Set @preview_copy = Replace(@preview_copys, ";;rit", "</i>")
+]%%
+<head>
 
+<title><font color="#ffffff" face="Arial, Helvetica,sans-serif" size="1">
+%%= v(@preview_copy) =%%
+</font></title>
+</head>
+<body>
+
+%%[
 
 Set @fittysen1 = Field(@template_lookup_row, 'fittysen1')
 Set @fittysentitle1a = Uppercase(Field(@template_lookup_row, 'fittysentitle1'))
