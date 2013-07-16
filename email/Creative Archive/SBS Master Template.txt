@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- ONE KINGS LANE MASTER TEMPLATE 2x3 VER 2.0 07/10/2013 -->
-<head>
+<!-- ONE KINGS LANE MASTER TEMPLATE 2x3 VER 2.0 07/10/2013 --><head>
 %%[
 <!-- TEMPLATE VARIABLE DECLARATION START -->
 /* SET day and time */
-SET @Day_of_Sale = "07/11/2013"
+SET @Day_of_Sale = "07/16/2013"
 SET @SentDate = Now()
 SET @Email_Type = "am"
 SET @date_str= xtshortdate
@@ -18,6 +17,7 @@ SET @RPdate = Concat(@RPyear,@RPmonth,@RPday,"0")
 SET @RPpixel = Concat("http://pixel.monitor1.returnpath.net/pixel.gIF?r=6899c41dcc18ee37d5f9045d1dda6570a8093c0f&date=",@RPmonth,"/",@RPday,"/",@RPyear)
 ]%%
 <!-- rpcampaign: %%=v(@RPdate)=%%-->
+
 <meta http-equiv="Content-Type" content="text/html; charSET=utf-8" />
 
 %%[ 
@@ -88,103 +88,103 @@ for @i = 1 to Rowcount(@Template_UI_Email_SBS) do
                                 SET @Daily_Prefooter_Format = Field(@rowXX, 'Daily_Prefooter_Format')
                                 
                                 SET @fittysen1 = Field(@rowXX,'fittysen1')
-                                SET @fittysentitle1 = Field(@rowXX,'fittysentitle1')
+                                SET @fittysentitle1 = Uppercase(Field(@rowXX,'fittysentitle1'))
                                 SET @fittysendescription1 = Field(@rowXX,'fittysendescription1')
                                 SET @VMF_Sale1 = Field(@rowXX,'VMF_Sale1')
                                 SET @VMF_Link1 = Field(@rowXX,'VMF_Link1')
                                 SET @fittysen2 = Field(@rowXX,'fittysen2')
-                                SET @fittysentitle2 = Field(@rowXX,'fittysentitle2')
+                                SET @fittysentitle2 = Uppercase(Field(@rowXX,'fittysentitle2'))
                                 SET @fittysendescription2 = Field(@rowXX,'fittysendescription2')
                                 SET @VMF_Sale2 = Field(@rowXX,'VMF_Sale2')
                                 SET @VMF_Link2 = Field(@rowXX,'VMF_Link2')
                                 SET @fittysen3 = Field(@rowXX,'fittysen3')
-                                SET @fittysentitle3 = Field(@rowXX,'fittysentitle3')
+                                SET @fittysentitle3 = Uppercase(Field(@rowXX,'fittysentitle3'))
                                 SET @fittysendescription3 = Field(@rowXX,'fittysendescription3')
                                 SET @VMF_Sale3 = Field(@rowXX,'VMF_Sale3')
                                 SET @VMF_Link3 = Field(@rowXX,'VMF_Link3')
                                 SET @fittysen4 = Field(@rowXX,'fittysen4')
-                                SET @fittysentitle4 = Field(@rowXX,'fittysentitle4')
+                                SET @fittysentitle4 = Uppercase(Field(@rowXX,'fittysentitle4'))
                                 SET @fittysendescription4 = Field(@rowXX,'fittysendescription4')
                                 SET @VMF_Sale4 = Field(@rowXX,'VMF_Sale4')
                                 SET @VMF_Link4 = Field(@rowXX,'VMF_Link4')
                                 SET @fittysen5 = Field(@rowXX,'fittysen5')
-                                SET @fittysentitle5 = Field(@rowXX,'fittysentitle5')
+                                SET @fittysentitle5 = Uppercase(Field(@rowXX,'fittysentitle5'))
                                 SET @fittysendescription5 = Field(@rowXX,'fittysendescription5')
                                 SET @VMF_Sale5 = Field(@rowXX,'VMF_Sale5')
                                 SET @VMF_Link5 = Field(@rowXX,'VMF_Link5')
                                 SET @fittysen6 = Field(@rowXX,'fittysen6')
-                                SET @fittysentitle6 = Field(@rowXX,'fittysentitle6')
+                                SET @fittysentitle6 = Uppercase(Field(@rowXX,'fittysentitle6'))
                                 SET @fittysendescription6 = Field(@rowXX,'fittysendescription6')
                                 SET @VMF_Sale6 = Field(@rowXX,'VMF_Sale6')
                                 SET @VMF_Link6 = Field(@rowXX,'VMF_Link6')
                                 SET @fittysen7 = Field(@rowXX,'fittysen7')
-                                SET @fittysentitle7 = Field(@rowXX,'fittysentitle7')
+                                SET @fittysentitle7 = Uppercase(Field(@rowXX,'fittysentitle7'))
                                 SET @fittysendescription7 = Field(@rowXX,'fittysendescription7')
                                 SET @VMF_Sale7 = Field(@rowXX,'VMF_Sale7')
                                 SET @VMF_Link7 = Field(@rowXX,'VMF_Link7')
                                 SET @fittysen8 = Field(@rowXX,'fittysen8')
-                                SET @fittysentitle8 = Field(@rowXX,'fittysentitle8')
+                                SET @fittysentitle8 = Uppercase(Field(@rowXX,'fittysentitle8'))
                                 SET @fittysendescription8 = Field(@rowXX,'fittysendescription8')
                                 SET @VMF_Sale8 = Field(@rowXX,'VMF_Sale8')
                                 SET @VMF_Link8 = Field(@rowXX,'VMF_Link8')
                                 SET @fittysen9 = Field(@rowXX,'fittysen9')
-                                SET @fittysentitle9 = Field(@rowXX,'fittysentitle9')
+                                SET @fittysentitle9 = Uppercase(Field(@rowXX,'fittysentitle9'))
                                 SET @fittysendescription9 = Field(@rowXX,'fittysendescription9')
                                 SET @VMF_Sale9 = Field(@rowXX,'VMF_Sale9')
                                 SET @VMF_Link9 = Field(@rowXX,'VMF_Link9')
                                 SET @fittysen10 = Field(@rowXX,'fittysen10')
-                                SET @fittysentitle10 = Field(@rowXX,'fittysentitle10')
+                                SET @fittysentitle10 = Uppercase(Field(@rowXX,'fittysentitle10'))
                                 SET @fittysendescription10 = Field(@rowXX,'fittysendescription10')
                                 SET @VMF_Sale10 = Field(@rowXX,'VMF_Sale10')
                                 SET @VMF_Link10 = Field(@rowXX,'VMF_Link10')
                                 SET @fittysen11 = Field(@rowXX,'fittysen11')
-                                SET @fittysentitle11 = Field(@rowXX,'fittysentitle11')
+                                SET @fittysentitle11 = Uppercase(Field(@rowXX,'fittysentitle11'))
                                 SET @fittysendescription11 = Field(@rowXX,'fittysendescription11')
                                 SET @VMF_Sale11 = Field(@rowXX,'VMF_Sale11')
                                 SET @VMF_Link11 = Field(@rowXX,'VMF_Link11')
                                 SET @fittysen12 = Field(@rowXX,'fittysen12')
-                                SET @fittysentitle12 = Field(@rowXX,'fittysentitle12')
+                                SET @fittysentitle12 = Uppercase(Field(@rowXX,'fittysentitle12'))
                                 SET @fittysendescription12 = Field(@rowXX,'fittysendescription12')
                                 SET @VMF_Sale12 = Field(@rowXX,'VMF_Sale12')
                                 SET @VMF_Link12 = Field(@rowXX,'VMF_Link12')
                                 SET @fittysen13 = Field(@rowXX,'fittysen13')
-                                SET @fittysentitle13 = Field(@rowXX,'fittysentitle13')
+                                SET @fittysentitle13 = Uppercase(Field(@rowXX,'fittysentitle13'))
                                 SET @fittysendescription13 = Field(@rowXX,'fittysendescription13')
                                 SET @VMF_Sale13 = Field(@rowXX,'VMF_Sale13')
                                 SET @VMF_Link13 = Field(@rowXX,'VMF_Link13')
                                 SET @fittysen14 = Field(@rowXX,'fittysen14')
-                                SET @fittysentitle14 = Field(@rowXX,'fittysentitle14')
+                                SET @fittysentitle14 = Uppercase(Field(@rowXX,'fittysentitle14'))
                                 SET @fittysendescription14 = Field(@rowXX,'fittysendescription14')
                                 SET @VMF_Sale14 = Field(@rowXX,'VMF_Sale14')
 
                                 SET @VMF_Link14 = Field(@rowXX,'VMF_Link14')
                                 SET @fittysen15 = Field(@rowXX,'fittysen15')
-                                SET @fittysentitle15 = Field(@rowXX,'fittysentitle15')
+                                SET @fittysentitle15 = Uppercase(Field(@rowXX,'fittysentitle15'))
                                 SET @fittysendescription15 = Field(@rowXX,'fittysendescription15')
                                 SET @VMF_Sale15 = Field(@rowXX,'VMF_Sale15')
                                 SET @VMF_Link15 = Field(@rowXX,'VMF_Link15')
                                 SET @fittysen16 = Field(@rowXX,'fittysen16')
-                                SET @fittysentitle16 = Field(@rowXX,'fittysentitle16')
+                                SET @fittysentitle16 = Uppercase(Field(@rowXX,'fittysentitle16'))
                                 SET @fittysendescription16 = Field(@rowXX,'fittysendescription16')
                                 SET @VMF_Sale16 = Field(@rowXX,'VMF_Sale16')
                                 SET @VMF_Link16 = Field(@rowXX,'VMF_Link16')
                                 SET @fittysen17 = Field(@rowXX,'fittysen17')
-                                SET @fittysentitle17 = Field(@rowXX,'fittysentitle17')
+                                SET @fittysentitle17 = Uppercase(Field(@rowXX,'fittysentitle17'))
                                 SET @fittysendescription17 = Field(@rowXX,'fittysendescription17')
                                 SET @VMF_Sale17 = Field(@rowXX,'VMF_Sale17')
                                 SET @VMF_Link17 = Field(@rowXX,'VMF_Link17')
                                 SET @fittysen18 = Field(@rowXX,'fittysen18')
-                                SET @fittysentitle18 = Field(@rowXX,'fittysentitle18')
+                                SET @fittysentitle18 = Uppercase(Field(@rowXX,'fittysentitle18'))
                                 SET @fittysendescription18 = Field(@rowXX,'fittysendescription18')
                                 SET @VMF_Sale18 = Field(@rowXX,'VMF_Sale18')
                                 SET @VMF_Link18 = Field(@rowXX,'VMF_Link18')
                                 SET @fittysen19 = Field(@rowXX,'fittysen19')
-                                SET @fittysentitle19 = Field(@rowXX,'fittysentitle19')
+                                SET @fittysentitle19 = Uppercase(Field(@rowXX,'fittysentitle19'))
                                 SET @fittysendescription19 = Field(@rowXX,'fittysendescription19')
                                 SET @VMF_Sale19 = Field(@rowXX,'VMF_Sale19')
                                 SET @VMF_Link19 = Field(@rowXX,'VMF_Link19')
                                 SET @fittysen20 = Field(@rowXX,'fittysen20')
-                                SET @fittysentitle20 = Field(@rowXX,'fittysentitle20')
+                                SET @fittysentitle20 = Uppercase(Field(@rowXX,'fittysentitle20'))
                                 SET @fittysendescription20 = Field(@rowXX,'fittysendescription20')
                                 SET @VMF_Sale20 = Field(@rowXX,'VMF_Sale20')
                                 SET @VMF_Link20 = Field(@rowXX,'VMF_Link20')
@@ -1561,11 +1561,12 @@ next @i
 <tr><td height="10"></td></tr>
 
 %%[
-SET @last_chance_date = FORMAT(Now(),"MM/dd/yyyy")
+SET @last_chance_date = FORMAT(DateAdd(@day_of_sale,"-2","D"),"MM/dd/yyyy")
 SET @last_chance_date = Concat(@last_chance_date," 08:00:00 AM")
-SET @rows = LookupOrderedRows("Sales -- PRODUCTION",4,"ended_on asc","ended_on", @last_chance_date)
-SET @total_sales = RowCount(@rows)
-SET @row_number = 1             
+Set @rows = LookupOrderedRows("Sales -- PRODUCTION",0,"name desc","started_on", @last_chance_date)
+Set @total_sales = RowCount(@rows)
+Set @row_number = 1
+           
 ]%%
 
 	<tr>
@@ -1585,6 +1586,8 @@ for @cell_number = 1 to 4 do
         IF @Last_Chance_Sale_Title == "GIFts Under $50" then
         SET @row_number = Add(@row_number,1)
         endIF    
+        
+
 	
 		SET @row = Row(@rows,@row_number) 
 		SET @URL_LC_LIFestyle = Concat(Field(@row, 'link'),'?utm_source=Daily&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@day_of_sale,'.',_subscriberkey,'&utm_term=Last_Chance.Image.',@row_number,'.',Field(@row, 'sales_event_id'))
@@ -1595,6 +1598,8 @@ for @cell_number = 1 to 4 do
         <!--PUT SYMBOL PROCESSING HERE-->
         SET @Last_Chance_Sale_Title = Replace(@Last_Chance_Sale_Title, "ç", "&ccedil;")
         SET @Last_Chance_Sale_Title = Replace(@Last_Chance_Sale_Title, "ó", "&oacute;")  
+        
+        
         <!--END SYMBOL PROCESSING HERE-->
         
 		SET @Last_Chance_Sale_Button_Redirect = RedirectTo(v(@URL_LC_Button))   
@@ -1628,48 +1633,62 @@ for @cell_number = 1 to 4 do
 
  <!--END OF ENDING SALES SECTION-->
 
+%%[ if @prefooter_display == "yes" then ]%%
+%%= TreatAsContentArea("TACA_Key_Daily_Prefooter",@daily_prefooter) =%%
+%%[ endif ]%%  
+
+
+%%= TreatAsContentArea("TACA_Key_Daily_Upcoming_Events",@daily_upcoming_events) =%% 
+
+
+
+
 <tr>
 <td>
 <table align="center" border="0" cellpadding="0" cellspacing="0" width="650">
 <tr>
+<td height="7">
+</td>
+</tr>
+<tr>
 <td align="center">
-<font color="#666666" face="Arial, Helvetica,sans-serIF" size="1" style="line-height:16px;">
-2013 One Kings Lane&reg; All rights reserved.  One Kings Lane and the elephant logo are registered trademarks of One Kings Lane Inc.<br />
-Tastemaker Tag Sales&trade; is a trademark of One Kings Lane Inc.  Corp.  Address: 1355 Market Street Suite 400, San Francisco, CA 94103<p>
-<a href="https://www.onekingslane.com/privacy?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Footer.Privacy_Policy.1" style="text-decoration:none">
-<font color="#74726a">PRIVACY POLICY</font>
-</a> &nbsp; | &nbsp; <a href="https://www.onekingslane.com/contact-us?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Footer.Contact_Us.1" style="text-decoration:none"><font color="#666666">
-CONTACT US</font></a>  &nbsp; | &nbsp; <a href="https://www.onekingslane.com/corporate/careers/tech/?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Footer.Hiring.1" style="text-decoration:none"><font color="#74726a">HIRING</font></a>
-&nbsp; | &nbsp; <a href="%%=RedirectTo(v(@URL_Unsubscribe))=%%" style="text-decoration:none"><font color="#74726a">UNSUBSCRIBE</font></a>
-</font>
+<font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px;">
+2013 One Kings Lane&reg; All rights reserved.  One Kings Lane and the elephant logo are registered trademarks of One Kings Lane Inc.</font><BR><br>
+<font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px;">Tastemaker Tag Sales&trade; is a trademark of One Kings Lane Inc.  Corp.  Address: 1355 Market Street Suite 400, San Francisco, CA 94103</font><BR><BR>
+<a href="https://www.onekingslane.com/privacy?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Privacy_Policy.1" style="text-decoration:none">
+<font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 11px;">PRIVACY POLICY</font>
+</a> &nbsp; | &nbsp; <a href="https://www.onekingslane.com/contact-us?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Contact_Us.1" style="text-decoration:none"><font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 11px;">
+CONTACT US</font></a>  &nbsp; | &nbsp; <a href="https://www.onekingslane.com/corporate/careers/?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Hiring.1" style="text-decoration:none"><font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 11px;">HIRING</font></a>
+&nbsp; | &nbsp; <a href="%%=RedirectTo(v(@URL_Unsubscribe))=%%" style="text-decoration:none"><font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 11px;">UNSUBSCRIBE</font></a>
 </td>
 </tr>
 
 <tr>
 <td>
-<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gIF-alpha&wid=15" border="0" width="15" height="15" style="display:block;" />
+<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gif-alpha&wid=15" border="0" width="15" height="15" style="display:block;" />
 </td>
 </tr>
 
 <tr>
 <td align="center">
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="650">
+<table align="center" cellpadding="0" cellspacing="0" width="650">
 <tr>
-<td align="center"><strong></strong>
-<a href="http://twitter.com/onekingslane"><img src="https://okl.scene7.com/is/image/OKL/twitter_02.062012.gIF?fmt=gIF&wid=32" alt="OKL Twitter" border="0" width="32" height="30" /></a>
-<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gIF-alpha&wid=5" border="0" width="5" height="15" />
-<a href="http://www.facebook.com/OneKingsLane"><img src="https://okl.scene7.com/is/image/OKL/fb_02.062012?fmt=gIF&wid=32" alt="OKL Facebook" border="0" width="32" height="30" /></a>
-<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gIF-alpha&wid=5" border="0" width="5" height="15" />
-<a href="http://pinterest.com/onekingslane/"><img src="https://okl.scene7.com/is/image/OKL/iphone_02.062012.gIF?fmt=gIF&wid=32" border="0" width="32" height="30" /></a>
-<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gIF-alpha&wid=5" border="0" width="3" height="15" />
-<a href="http://itunes.apple.com/us/app/one-kings-lane/id403827899"><img src="https://okl.scene7.com/is/image/OKL/iphone_02.222012b?fmt=gIF&wid=32" border="0" width="32" height="34" /></a>
-</td>
+<td align="center">
+<a href="http://twitter.com/onekingslane"><img src="https://okl.scene7.com/is/image/OKL/twitter_02.062012.gif?fmt=gif&wid=32" alt="OKL Twitter" border="0" width="32" height="30" /></a>
+<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gif-alpha&wid=5" border="0" width="5" height="15" />
+<a href="http://www.facebook.com/OneKingsLane"><img src="https://okl.scene7.com/is/image/OKL/fb_02.062012?fmt=gif&wid=32" alt="OKL Facebook" border="0" width="32" height="30" /></a>
+<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gif-alpha&wid=5" border="0" width="5" height="15" />
+<a href="http://pinterest.com/onekingslane/"><img src="https://okl.scene7.com/is/image/OKL/iphone_02.062012.gif?fmt=gif&wid=32" border="0" width="32" height="30" /></a>
+<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gif-alpha&wid=5" border="0" width="3" height="15" />
+<a href="http://itunes.apple.com/us/app/one-kings-lane/id403827899"><img src="https://okl.scene7.com/is/image/OKL/iphone_02.222012b?fmt=gif&wid=32" border="0" width="32" height="34" /></a>
+</td> 
+</tr>
+</table>
 </tr>
 </table>
 </td>
 </tr>
 </table>
-<td>
 </tr>
 
-<tr><td height="30"></td></tr></table></body></html><custom name="opencounter" type="tracking">
+<tr><td height="30"></td></tr></table></body></html>
