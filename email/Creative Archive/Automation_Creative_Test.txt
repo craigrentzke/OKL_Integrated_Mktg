@@ -1,0 +1,1666 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- ONE KINGS LANE MASTER TEMPLATE 2x3 VER 2.0 07/10/2013 --><head>
+%%[
+<!-- TEMPLATE VARIABLE DECLARATION START -->
+/* SET day and time */
+SET @Day_of_Sale = "07/29/2013"
+SET @SentDate = Now()
+SET @Email_Type = "am"
+SET @date_str= xtshortdate
+
+SET @RPdate = Now()
+SET @dayofweek = Format(Now(),"dddd")
+SET @RPmonth = DatePart(@RPdate,"M")
+SET @RPday = DatePart(@RPdate,"D")
+SET @RPyear = DatePart(@RPdate,"Y")
+SET @RPdate = Concat("okl",@RPyear,@RPmonth,@RPday,"0")
+SET @RPpixel = Concat("http://pixel.monitor1.returnpath.net/pixel.gIF?r=6899c41dcc18ee37d5f9045d1dda6570a8093c0f&date=",@RPmonth,"/",@RPday,"/",@RPyear)
+]%%
+<!-- rpcampaign: %%=v(@RPdate)=%%-->
+
+<meta http-equiv="Content-Type" content="text/html; charSET=utf-8" />
+
+%%[ 
+/* SET variables from sendable DE */
+SET @Customer_ID = customer_id
+SET @sbs_Segment = sbs_segment
+SET @Bucket = Bucket
+SET @Count = count
+
+	SET @Unsubscribe_Token = token
+	SET @Unsubscribe_ID = customer_id
+
+SET @minute_dIFference = datedIFf("1970-01-01 00:00:00", SystemDateToLocalDate(now()), "MI")
+SET @milli_dIFference = Multiply(@minute_dIFference, 60000)
+SET @campaign_path = Concat(@TodayDate,"_",@sbs_segment,"_",@bucket)
+SET @Template_UI_Email_SBS = LookupOrderedRows("Template_UI", 0, "sale_date", "sale_date", @Day_of_Sale, "email_type", @Email_Type)
+SET @RC = Rowcount(@Template_UI_Email_SBS)
+
+SET @rowXX = Row(@Template_UI_Email_SBS, 1)
+
+                            	SET @yes = "yes"
+                            	SET @bucketID = @bucket_UI
+                                
+                                SET @Layout = "2x3"
+                                SET @Subject_Line = "Creative Test"
+                                SET @Preview_Copy = Field(@rowXX, 'Preview_Copy')
+                                SET @Daily_Banner_Display = Field(@rowXX, 'Daily_Banner_Display')
+                                SET @Daily_Banner_Name = Field(@rowXX, 'Daily_Banner_Name')
+                                SET @Daily_Banner_Linking = Field(@rowXX, 'Daily_Banner_Linking')
+                                SET @Daily_Banner_Link = Field(@rowXX, 'Daily_Banner_Link')
+                                SET @Daily_Banner_Format = Field(@rowXX, 'Daily_Banner_Format')
+                                SET @Prefooter_Display = Field(@rowXX, 'Prefooter_Display')
+                                SET @Daily_Prefooter = Field(@rowXX, 'Daily_Prefooter')
+                                SET @Daily_Prefooter_Link = Field(@rowXX, 'Daily_Prefooter_Link')
+                                SET @Daily_Prefooter_Format = Field(@rowXX, 'Daily_Prefooter_Format')
+                                
+                                SET @fittysen1 = Field(@rowXX,'fittysen1')
+                                SET @fittysentitle1 = Uppercase(Field(@rowXX,'fittysentitle1'))
+                                SET @fittysendescription1 = Field(@rowXX,'fittysendescription1')
+                                SET @VMF_Sale1 = Field(@rowXX,'VMF_Sale1')
+                                SET @VMFLink1 = Field(@rowXX,'VMFLink1')
+                                SET @fittysen2 = Field(@rowXX,'fittysen2')
+                                SET @fittysentitle2 = Uppercase(Field(@rowXX,'fittysentitle2'))
+                                SET @fittysendescription2 = Field(@rowXX,'fittysendescription2')
+                                SET @VMF_Sale2 = Field(@rowXX,'VMF_Sale2')
+                                SET @VMFLink2 = Field(@rowXX,'VMFLink2')
+                                SET @fittysen3 = Field(@rowXX,'fittysen3')
+                                SET @fittysentitle3 = Uppercase(Field(@rowXX,'fittysentitle3'))
+                                SET @fittysendescription3 = Field(@rowXX,'fittysendescription3')
+                                SET @VMF_Sale3 = Field(@rowXX,'VMF_Sale3')
+                                SET @VMFLink3 = Field(@rowXX,'VMFLink3')
+                                SET @fittysen4 = Field(@rowXX,'fittysen4')
+                                SET @fittysentitle4 = Uppercase(Field(@rowXX,'fittysentitle4'))
+                                SET @fittysendescription4 = Field(@rowXX,'fittysendescription4')
+                                SET @VMF_Sale4 = Field(@rowXX,'VMF_Sale4')
+                                SET @VMFLink4 = Field(@rowXX,'VMFLink4')
+                                SET @fittysen5 = Field(@rowXX,'fittysen5')
+                                SET @fittysentitle5 = Uppercase(Field(@rowXX,'fittysentitle5'))
+                                SET @fittysendescription5 = Field(@rowXX,'fittysendescription5')
+                                SET @VMF_Sale5 = Field(@rowXX,'VMF_Sale5')
+                                SET @VMFLink5 = Field(@rowXX,'VMFLink5')
+                                SET @fittysen6 = Field(@rowXX,'fittysen6')
+                                SET @fittysentitle6 = Uppercase(Field(@rowXX,'fittysentitle6'))
+                                SET @fittysendescription6 = Field(@rowXX,'fittysendescription6')
+                                SET @VMF_Sale6 = Field(@rowXX,'VMF_Sale6')
+                                SET @VMFLink6 = Field(@rowXX,'VMFLink6')
+                                SET @fittysen7 = Field(@rowXX,'fittysen7')
+                                SET @fittysentitle7 = Uppercase(Field(@rowXX,'fittysentitle7'))
+                                SET @fittysendescription7 = Field(@rowXX,'fittysendescription7')
+                                SET @VMF_Sale7 = Field(@rowXX,'VMF_Sale7')
+                                SET @VMFLink7 = Field(@rowXX,'VMFLink7')
+                                SET @fittysen8 = Field(@rowXX,'fittysen8')
+                                SET @fittysentitle8 = Uppercase(Field(@rowXX,'fittysentitle8'))
+                                SET @fittysendescription8 = Field(@rowXX,'fittysendescription8')
+                                SET @VMF_Sale8 = Field(@rowXX,'VMF_Sale8')
+                                SET @VMFLink8 = Field(@rowXX,'VMFLink8')
+                                SET @fittysen9 = Field(@rowXX,'fittysen9')
+                                SET @fittysentitle9 = Uppercase(Field(@rowXX,'fittysentitle9'))
+                                SET @fittysendescription9 = Field(@rowXX,'fittysendescription9')
+                                SET @VMF_Sale9 = Field(@rowXX,'VMF_Sale9')
+                                SET @VMFLink9 = Field(@rowXX,'VMFLink9')
+                                SET @fittysen10 = Field(@rowXX,'fittysen10')
+                                SET @fittysentitle10 = Uppercase(Field(@rowXX,'fittysentitle10'))
+                                SET @fittysendescription10 = Field(@rowXX,'fittysendescription10')
+                                SET @VMF_Sale10 = Field(@rowXX,'VMF_Sale10')
+                                SET @VMFLink10 = Field(@rowXX,'VMFLink10')
+                                SET @fittysen11 = Field(@rowXX,'fittysen11')
+                                SET @fittysentitle11 = Uppercase(Field(@rowXX,'fittysentitle11'))
+                                SET @fittysendescription11 = Field(@rowXX,'fittysendescription11')
+                                SET @VMF_Sale11 = Field(@rowXX,'VMF_Sale11')
+                                SET @VMFLink11 = Field(@rowXX,'VMFLink11')
+                                SET @fittysen12 = Field(@rowXX,'fittysen12')
+                                SET @fittysentitle12 = Uppercase(Field(@rowXX,'fittysentitle12'))
+                                SET @fittysendescription12 = Field(@rowXX,'fittysendescription12')
+                                SET @VMF_Sale12 = Field(@rowXX,'VMF_Sale12')
+                                SET @VMFLink12 = Field(@rowXX,'VMFLink12')
+                                SET @fittysen13 = Field(@rowXX,'fittysen13')
+                                SET @fittysentitle13 = Uppercase(Field(@rowXX,'fittysentitle13'))
+                                SET @fittysendescription13 = Field(@rowXX,'fittysendescription13')
+                                SET @VMF_Sale13 = Field(@rowXX,'VMF_Sale13')
+                                SET @VMFLink13 = Field(@rowXX,'VMFLink13')
+                                SET @fittysen14 = Field(@rowXX,'fittysen14')
+                                SET @fittysentitle14 = Uppercase(Field(@rowXX,'fittysentitle14'))
+                                SET @fittysendescription14 = Field(@rowXX,'fittysendescription14')
+                                SET @VMF_Sale14 = Field(@rowXX,'VMF_Sale14')
+
+                                SET @VMFLink14 = Field(@rowXX,'VMFLink14')
+                                SET @fittysen15 = Field(@rowXX,'fittysen15')
+                                SET @fittysentitle15 = Uppercase(Field(@rowXX,'fittysentitle15'))
+                                SET @fittysendescription15 = Field(@rowXX,'fittysendescription15')
+                                SET @VMF_Sale15 = Field(@rowXX,'VMF_Sale15')
+                                SET @VMFLink15 = Field(@rowXX,'VMFLink15')
+                                SET @fittysen16 = Field(@rowXX,'fittysen16')
+                                SET @fittysentitle16 = Uppercase(Field(@rowXX,'fittysentitle16'))
+                                SET @fittysendescription16 = Field(@rowXX,'fittysendescription16')
+                                SET @VMF_Sale16 = Field(@rowXX,'VMF_Sale16')
+                                SET @VMFLink16 = Field(@rowXX,'VMFLink16')
+                                SET @fittysen17 = Field(@rowXX,'fittysen17')
+                                SET @fittysentitle17 = Uppercase(Field(@rowXX,'fittysentitle17'))
+                                SET @fittysendescription17 = Field(@rowXX,'fittysendescription17')
+                                SET @VMF_Sale17 = Field(@rowXX,'VMF_Sale17')
+                                SET @VMFLink17 = Field(@rowXX,'VMFLink17')
+                                SET @fittysen18 = Field(@rowXX,'fittysen18')
+                                SET @fittysentitle18 = Uppercase(Field(@rowXX,'fittysentitle18'))
+                                SET @fittysendescription18 = Field(@rowXX,'fittysendescription18')
+                                SET @VMF_Sale18 = Field(@rowXX,'VMF_Sale18')
+                                SET @VMFLink18 = Field(@rowXX,'VMFLink18')
+                                SET @fittysen19 = Field(@rowXX,'fittysen19')
+                                SET @fittysentitle19 = Uppercase(Field(@rowXX,'fittysentitle19'))
+                                SET @fittysendescription19 = Field(@rowXX,'fittysendescription19')
+                                SET @VMF_Sale19 = Field(@rowXX,'VMF_Sale19')
+                                SET @VMFLink19 = Field(@rowXX,'VMFLink19')
+                                SET @fittysen20 = Field(@rowXX,'fittysen20')
+                                SET @fittysentitle20 = Uppercase(Field(@rowXX,'fittysentitle20'))
+                                SET @fittysendescription20 = Field(@rowXX,'fittysendescription20')
+                                SET @VMF_Sale20 = Field(@rowXX,'VMF_Sale20')
+                                SET @VMFLink20 = Field(@rowXX,'VMFLink20')
+
+SET @Sort_Order = Concat(@fittysen1,",",@fittysen2,",",@fittysen3,",",@fittysen4,",",@fittysen5,",",@fittysen6,",",@fittysen7,",",@fittysen8,",",@fittysen9,",",@fittysen10,",",@fittysen11,",",@fittysen12,",",@fittysen13,",",@fittysen14,",",@fittysen15,",",@fittysen16,",",@fittysen17,",",@fittysen18,",",@fittysen19,",",@fittysen20)
+
+SET @DoubleComma = IndexOf(@Sort_Order,",Sale ID")
+SET @Sort_Order = Substring(@Sort_Order,1,Subtract(@DoubleComma,1))
+                        
+]%%
+
+
+%%[SET @Sort_Order_RowSET = BuildRowSETFromString(@Sort_Order,",") 
+SET @total_daily_sales = RowCount(@Sort_Order_RowSET)
+
+IF IsNull(@total_daily_sales) OR Length(@total_daily_sales) == 0 THEN
+                SET @total_daily_sales = 0
+ENDIF
+]%%
+<title><font color="#ffffff" face="Arial, Helvetica,sans-serif" size="1">
+%%= v(@preview_copy) =%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></title>
+
+</head>
+<body>
+%%[
+SET @daily_sales_remainder = mod(@total_daily_sales, 5)
+]%%
+
+%%[
+	IF @total_daily_sales <= 5 then 
+	SET @total_daily_cells = 5  
+    
+    elseIF @daily_sales_remainder == 1 or @daily_sales_remainder == 4 then
+    SET @total_daily_cells = Add(@total_daily_sales, 1)
+    
+    elseIF @daily_sales_remainder == 3 then
+    SET @total_daily_cells = Add(@total_daily_sales, 2)
+    
+    else
+    SET @total_daily_cells = @total_daily_sales
+    
+	endIF
+]%%
+
+%%[ 
+
+SET @title1 = @fittysendescription1
+SET @title_length1 = Length(@title1)
+SET @flag = 0
+IF (@title_length1 > 50) THEN
+IF (Substring(@title1,48,1) == " ") THEN
+SET @title1 = Concat(Substring(@title1,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title1,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title1 = Concat(Substring(@title1,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+SET @title2 = @fittysendescription2
+SET @title_length2 = Length(@title2)
+SET @flag = 0
+IF (@title_length2 > 50) THEN
+IF (Substring(@title2,48,1) == " ") THEN
+SET @title2 = Concat(Substring(@title2,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title2,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title2 = Concat(Substring(@title2,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+SET @title3 = @fittysendescription3
+SET @title_length3 = Length(@title3)
+SET @flag = 0
+IF (@title_length3 > 50) THEN
+IF (Substring(@title3,48,1) == " ") THEN
+SET @title3 = Concat(Substring(@title3,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title3,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title3 = Concat(Substring(@title3,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+SET @title4 = @fittysendescription4
+SET @title_length4 = Length(@title4)
+SET @flag = 0
+IF (@title_length4 > 50) THEN
+IF (Substring(@title4,48,1) == " ") THEN
+SET @title4 = Concat(Substring(@title4,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title4,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title4 = Concat(Substring(@title4,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title5 = @fittysendescription5
+SET @title_length5 = Length(@title5)
+SET @flag = 0
+IF (@title_length5 > 50) THEN
+IF (Substring(@title5,48,1) == " ") THEN
+SET @title5 = Concat(Substring(@title5,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title5,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title5 = Concat(Substring(@title5,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+
+
+SET @title6 = @fittysendescription6
+SET @title_length6 = Length(@title6)
+SET @flag = 0
+IF (@title_length6 > 50) THEN
+IF (Substring(@title6,48,1) == " ") THEN
+SET @title6 = Concat(Substring(@title6,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title6,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title6 = Concat(Substring(@title6,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+
+SET @title7 = @fittysendescription7
+SET @title_length7 = Length(@title7)
+SET @flag = 0
+IF (@title_length7 > 50) THEN
+IF (Substring(@title7,48,1) == " ") THEN
+SET @title6 = Concat(Substring(@title7,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title7,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title7 = Concat(Substring(@title7,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+SET @title8 = @fittysendescription8
+SET @title_length8 = Length(@title8)
+SET @flag = 0
+IF (@title_length8 > 50) THEN
+IF (Substring(@title8,48,1) == " ") THEN
+SET @title8 = Concat(Substring(@title8,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title8,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title8 = Concat(Substring(@title8,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title9 = @fittysendescription9
+SET @title_length9 = Length(@title9)
+SET @flag = 0
+IF (@title_length9 > 50) THEN
+IF (Substring(@title9,48,1) == " ") THEN
+SET @title9 = Concat(Substring(@title9,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title9,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title9 = Concat(Substring(@title9,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title10 = @fittysendescription10
+SET @title_length10 = Length(@title10)
+SET @flag = 0
+IF (@title_length10 > 50) THEN
+IF (Substring(@title10,48,1) == " ") THEN
+SET @title10 = Concat(Substring(@title10,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title10,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title10 = Concat(Substring(@title10,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title11 = @fittysendescription11
+SET @title_length11 = Length(@title11)
+SET @flag = 0
+IF (@title_length11 > 50) THEN
+IF (Substring(@title11,48,1) == " ") THEN
+SET @title11 = Concat(Substring(@title11,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title11,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title11 = Concat(Substring(@title11,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title12 = @fittysendescription12
+SET @title_length12 = Length(@title12)
+SET @flag = 0
+IF (@title_length12 > 50) THEN
+IF (Substring(@title12,48,1) == " ") THEN
+SET @title12 = Concat(Substring(@title12,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title12,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title12 = Concat(Substring(@title12,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title13 = @fittysendescription13
+SET @title_length13 = Length(@title13)
+SET @flag = 0
+IF (@title_length13 > 50) THEN
+IF (Substring(@title13,48,1) == " ") THEN
+SET @title13 = Concat(Substring(@title13,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title13,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title13 = Concat(Substring(@title13,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title14 = @fittysendescription14
+SET @title_length14 = Length(@title14)
+SET @flag = 0
+IF (@title_length14 > 50) THEN
+IF (Substring(@title14,48,1) == " ") THEN
+SET @title14 = Concat(Substring(@title14,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title14,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title14 = Concat(Substring(@title14,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title15 = @fittysendescription15
+SET @title_length15 = Length(@title15)
+SET @flag = 0
+IF (@title_length15 > 50) THEN
+IF (Substring(@title15,48,1) == " ") THEN
+SET @title15 = Concat(Substring(@title15,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title15,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title15 = Concat(Substring(@title15,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title16 = @fittysendescription16
+SET @title_length16 = Length(@title16)
+SET @flag = 0
+IF (@title_length16 > 50) THEN
+IF (Substring(@title16,48,1) == " ") THEN
+SET @title16 = Concat(Substring(@title16,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title16,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title16 = Concat(Substring(@title16,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title17 = @fittysendescription17
+SET @title_length17 = Length(@title17)
+SET @flag = 0
+IF (@title_length17 > 50) THEN
+IF (Substring(@title17,48,1) == " ") THEN
+SET @title17 = Concat(Substring(@title17,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title17,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title17 = Concat(Substring(@title17,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title18 = @fittysendescription18
+SET @title_length18 = Length(@title18)
+SET @flag = 0
+IF (@title_length18 > 50) THEN
+IF (Substring(@title18,48,1) == " ") THEN
+SET @title18 = Concat(Substring(@title18,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title18,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title18 = Concat(Substring(@title18,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title19 = @fittysendescription19
+SET @title_length19 = Length(@title19)
+SET @flag = 0
+IF (@title_length19 > 50) THEN
+IF (Substring(@title19,48,1) == " ") THEN
+SET @title19 = Concat(Substring(@title19,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title19,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title19 = Concat(Substring(@title19,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+
+SET @title20 = @fittysendescription20
+SET @title_length20 = Length(@title20)
+SET @flag = 0
+IF (@title_length20 > 50) THEN
+IF (Substring(@title20,48,1) == " ") THEN
+SET @title20 = Concat(Substring(@title20,1,47),'...')
+
+ELSE
+
+FOR @counter = 47 DOWNTO 2 DO
+IF ( (Substring(@title20,@counter,1) == " ") AND @flag == 0  ) THEN
+SET @flag = 1
+SET @index = Subtract(@counter,1)
+SET @title20 = Concat(Substring(@title20,1,@index),'...')
+
+ENDIF        
+
+NEXT @counter
+
+ENDIF
+
+ENDIF
+
+]%%
+
+%%[
+SET @daily_banner_linka = @daily_banner_link
+SET @daily_banner_linkb = '?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%=v(@date_str)=%%&utm_term=Banner.1'
+SET @daily_banner_link = Concat(@daily_banner_linka, @daily_banner_linkb)
+SET @daily_banner_width = "650"
+
+SET @downstairs_banner_link_new = 'https://www.onekingslane.com/sales/15337?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Banner.NUEx_Downstairs_New_Banner.1'
+SET @downstairs_banner_display_new = "no"
+
+SET @downstairs_banner_link_old = 'https://www.onekingslane.com/sales/15337?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Banner.NUEx_Downstairs_Old_Banner.1'
+SET @downstairs_banner_display_old = "no"
+
+SET @RAF_banner_link = 'https://www.onekingslane.com/invite?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Banner.NUEx_RAF_Banner.1'
+SET @RAF_banner_display = "no"
+
+SET @pinterest_link = 'https://www.onekingslane.com/brands/pinterest?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Banner.NUEx_Pinterest_Banner.1'
+SET @pinterest_display = "no"
+
+SET @social_display = "no"
+
+]%%
+
+
+
+%%[
+SET @daily_prefooter_linka = @daily_prefooter_link
+SET @daily_prefooter_linkb = '?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%=v(@date_str)=%%&utm_term=Prefooter.1'
+SET @daily_prefooter_link = Concat(@daily_prefooter_linka, @daily_prefooter_linkb)
+SET @daily_prefooter_width = "650"
+]%%
+
+%%[
+SET @Trebuchet = "'Trebuchet MS'"
+SET @Times_New_Roman = "'Times New Roman'"
+]%%
+
+%%[
+SET @URL_Unsubscribe = Concat('https://www.onekingslane.com/account/email-preferences?id=',@Unsubscribe_ID,'&token=',@Unsubscribe_Token,'&utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=Footer.Email_Preferences.1')
+]%%
+
+
+%%[
+	IF @daily_banner_linking == "yes" THEN
+    
+    	IF @daily_banner_format == "jpg" THEN
+        
+        	SET @daily_banner = concat('<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="',@daily_banner_link,'"><img src="https://okl.scene7.com/is/image/OKL/',@daily_banner_name,'?$w650_jpg$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>')
+		
+        ELSE
+        
+        	SET @daily_banner = concat('<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="',@daily_banner_link,'"><img src="https://okl.scene7.com/is/image/OKL/',@daily_banner_name,'?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>')
+        
+		ENDIF
+	
+	ELSE
+    
+    	IF @daily_banner_format == "jpg" THEN
+        
+        	SET @daily_banner = concat('<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><img src="https://okl.scene7.com/is/image/OKL/',@daily_banner_name,'?$w650_jpg$" alt="OKL Banner" border="0" style="display:block;" /></td></tr><tr><td height="15"></td></tr></table></td></tr>')
+
+        ELSE
+        
+        	SET @daily_banner = concat('<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><img src="https://okl.scene7.com/is/image/OKL/',@daily_banner_name,'?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></td></tr><tr><td height="15"></td></tr></table></td></tr>')
+   
+		ENDIF
+
+	
+	ENDIF
+]%%
+
+
+
+
+
+
+
+
+%%[
+
+SET @daily_header = concat('<tr><td><table cellspacing="0" cellpadding="0" width="650" align="center"><tr><td width="234" height="30" style="border-bottom:1px solid #cccccc;">&nbsp;</td><td width="186" height="30" align="center" style="border-bottom:1px solid #cccccc;"><a href="https://www.onekingslane.com/all-sales?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'&utm_term=Header.Email_logo.1"><img src="https://okl.scene7.com/is/image/OKL/Email_logo?fmt=gIF&wid=180&qlt=90,0" alt="One Kings Lane" border="0" /></a></td><td width="205" height="30" align="right" style="border-bottom:1px solid #cccccc;"><table cellspacing="0" cellpadding="0" height="68"><tr><td width="205"align="right"><font style="color:#aca39e; font-family: Georgia, Helvetica, sans-serIF; font-size: 8px;">To change how often you hear from us, </font><a href="%%=RedirectTo(v(@URL_Unsubscribe))=%%" STYLE="TEXT-DECORATION: NONE"><font style="color:#357748; font-family: Georgia, Helvetica, sans-serIF; font-size: 8px;">click here.</font></a></td></tr><tr><td height="34"></td></tr><TR><td width="205" align="right" valign="bottom"><a href="https://www.onekingslane.com/all-sales?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=Header.Directed.All_Sales" style="text-decoration:none;"><font color="#f96b42" face="Helvetica Neue, Helvetica, sans-serIF, Georgia" size="-3"><b>SHOP ALL SALES</b></font></a></td></tr></table></td></tr><tr><td colspan="3" width="650" height="15" ></td></tr></table></td></tr>')
+
+SET @pref_banner = concat('<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="https://www.onekingslane.com/account/email-preferences"><img src="https://okl.scene7.com/is/image/OKL/banner_emailpreferences_010413?$w650_gif$" alt="Preference Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="25"></td></tr></table></td></tr>')
+
+SET @dailey_sales_title = concat('<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td height="25"></td></tr></table></td></tr>')
+
+SET @daily_last_chance_title = concat('<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="left" style="color:#797979; font-family:Georgia, ',@Times_New_Roman,', Times, serIF; font-size: 17px; letter-spacing:.5px;">Ending Soon</td><td align="right"><a href="https://www.onekingslane.com/all-sales?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=Last_Chance.Title.1" style="text-decoration:none;"><font style="color:#f96b42; font-size: 9px">&gt; &gt;</font> &nbsp;<font style="color:#f96b42; font-family:Arial, Helvetica, sans-serIF; font-size: 11px;"><b>VIEW ALL SALES</b></font></a></td></tr><tr><td colspan="2" height="3" style="border-bottom:1px solid #cccccc;"><img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gIF&wid=15" border="0" width="15" style="display:block;" /></td></tr></table></td></tr>')
+
+SET @daily_upcoming_events = concat('<tr><td height="25"></td></tr><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" width="650"><tr><td width="650" valign="top"><a href="https://www.onekingslane.com/invite?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=A_GIFt_of_15_summer"><img src="https://okl.scene7.com/is/image/OKL/2013_DailyEmail_PreFooter?$w650_gif$" alt="A GIFt of $15" border="0" width="650" /></a></td></tr></table></td></tr>')
+
+]%%
+
+
+%%[
+      IF @daily_prefooter_format == "jpg" THEN
+      
+          SET @daily_prefooter = concat('<tr><td height="20"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="652" align="center"><tr><td align="center"><a href="',@daily_prefooter_link,'"><img src="https://okl.scene7.com/is/image/OKL/',@daily_prefooter,'?$w650_jpg$" alt="One Kings Lane Pre-footer Announcement" style="display:block;" border="0" /></a></td></tr></table></td></tr>')
+          
+      ELSE
+      
+          SET @daily_prefooter = concat('<tr><td height="20"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="652" align="center"><tr><td align="center"><a href="',@daily_prefooter_link,'"><img src="https://okl.scene7.com/is/image/OKL/',@daily_prefooter,'?$w650_gif$" alt="One Kings Lane Pre-footer Announcement" style="display:block;" border="0" /></a></td></tr></table></td></tr>')
+      
+      ENDIF
+]%%
+
+
+
+
+
+
+
+
+
+
+%%[ if @vmf_sale1 == "no" then ]%%
+
+%%[ Set @big_sales_number1 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen1,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.1.',@fittysen1,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen1,'_Lifestyle_1?$medium$" alt="Sale 1" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle1,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title1,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen1,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.1.',@fittysen1,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+
+
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number1 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink1,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.1.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen1,'?$medium$" alt="Sale 1" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle1,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title1,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink1,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.1.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale2 == "no" then ]%%
+
+%%[ Set @big_sales_number2 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen2,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.2.',@fittysen2,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen2,'_Lifestyle_1?$medium$" alt="Sale 2" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle2,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title2,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen2,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.2.',@fittysen2,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number2 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink2,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.2.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen2,'?$medium$" alt="Sale 2" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle2,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title2,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink2,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.2.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale3 == "no" then ]%%
+
+%%[ Set @big_sales_number3 = concat('<td valign="top"> </td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen3,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.3.',@fittysen3,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen3,'_Lifestyle_1?$medium$" alt="Sale 3" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle3,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title3,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen3,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.3.',@fittysen3,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number3 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink3,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.3.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen3,'?$medium$" alt="Sale 3" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle3,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title3,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink3,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.3.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale4 == "no" then ]%%
+
+%%[ Set @big_sales_number4 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen4,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.4.',@fittysen4,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen4,'_Lifestyle_1?$medium$" alt="Sale 4" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle4,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title4,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen4,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.4.',@fittysen4,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number4 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink4,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.4.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen4,'?$medium$" alt="Sale 4" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle4,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title4,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink4,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.4.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale5 == "no" then ]%%
+
+%%[ Set @big_sales_number5 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen5,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.5.',@fittysen5,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen5,'_Lifestyle_1?$medium$" alt="Sale 5" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle5,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title5,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen5,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.5.',@fittysen5,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number5 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink5,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.5.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen5,'?$medium$" alt="Sale 5" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle5,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title5,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink5,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.5.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale6 == "no" then ]%%
+
+%%[ Set @big_sales_number6 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen6,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.6.',@fittysen6,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen6,'_Lifestyle_1?$medium$" alt="Sale 6" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle6,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title6,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen6,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.6.',@fittysen6,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number6 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink6,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.6.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen6,'?$medium$" alt="Sale 6" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle6,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title6,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink6,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.6.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale7 == "no" then ]%%
+
+%%[ Set @big_sales_number7 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen7,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.7.',@fittysen7,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen7,'_Lifestyle_1?$medium$" alt="Sale 7" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle7,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title7,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen7,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.7.',@fittysen7,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number7 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink7,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.7.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen7,'?$medium$" alt="Sale 7" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle7,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title7,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink7,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.7.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+%%[ if @vmf_sale8 == "no" then ]%%
+
+%%[ Set @big_sales_number8 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen8,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.8.',@fittysen8,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen8,'_Lifestyle_1?$medium$" alt="Sale 8" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle8,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title8,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen8,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.8.',@fittysen8,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number8 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink8,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.8.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen8,'?$medium$" alt="Sale 8" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle8,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title8,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink8,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.8.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale9 == "no" then ]%%
+
+%%[ Set @big_sales_number9 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen9,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.9.',@fittysen9,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen9,'_Lifestyle_1?$medium$" alt="Sale 9" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle9,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title9,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen9,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.9.',@fittysen9,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number9 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink9,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.9.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen9,'?$medium$" alt="Sale 9" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle9,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title9,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink9,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.9.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale10 == "no" then ]%%
+
+%%[ Set @big_sales_number10 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen10,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.10.',@fittysen10,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen10,'_Lifestyle_1?$medium$" alt="Sale 10" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle10,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title10,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen10,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.10.',@fittysen10,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number10 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink10,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.10.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen10,'?$medium$" alt="Sale 10" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle10,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title10,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink10,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.10.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+%%[ if @vmf_sale11 == "no" then ]%%
+
+%%[ Set @big_sales_number11 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen11,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.11.',@fittysen11,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen11,'_Lifestyle_1?$medium$" alt="sale 11" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle11,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title11,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen11,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.11.',@fittysen11,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number11 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink11,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.11.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen11,'?$medium$" alt="Sale 11" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle11,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title11,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink11,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.11.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale12 == "no" then ]%%
+
+%%[ Set @big_sales_number12 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen12,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.12.',@fittysen12,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen12,'_Lifestyle_1?$medium$" alt="sale 12" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle12,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title12,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen12,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.12.',@fittysen12,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number12 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink12,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.12.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen12,'?$medium$" alt="Sale 12" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle12,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title12,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink12,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.12.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale13 == "no" then ]%%
+
+%%[ Set @big_sales_number13 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen13,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.13.',@fittysen13,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen13,'_Lifestyle_1?$medium$" alt="sale 13" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle13,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title13,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen13,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.13.',@fittysen13,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number13 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink13,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.13.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen13,'?$medium$" alt="Sale 13" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle13,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title13,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink13,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.13.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale14 == "no" then ]%%
+
+%%[ Set @big_sales_number14 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen14,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.14.',@fittysen14,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen14,'_Lifestyle_1?$medium$" alt="sale 14" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle14,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title14,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen14,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.14.',@fittysen14,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number14 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink14,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.14.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen14,'?$medium$" alt="Sale 14" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle14,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title14,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink14,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.14.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale15 == "no" then ]%%
+
+%%[ Set @big_sales_number15 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen15,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.15.',@fittysen15,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen15,'_Lifestyle_1?$medium$" alt="sale 15" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle15,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title15,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen15,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.15.',@fittysen15,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number15 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink15,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.15.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen15,'?$medium$" alt="Sale 15" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle15,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title15,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink15,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.15.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale16 == "no" then ]%%
+
+%%[ Set @big_sales_number16 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen16,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.image.16.',@fittysen16,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen16,'_Lifestyle_1?$medium$" alt="Sale16" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle16,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title16,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen16,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.16.',@fittysen16,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number16 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink16,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.16.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen16,'?$medium$" alt="Sale 16" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle16,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title16,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink16,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.16.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale17 == "no" then ]%%
+
+%%[ Set @big_sales_number17 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen17,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.image.17.',@fittysen17,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen17,'_Lifestyle_1?$medium$" alt="Sale17" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle17,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title17,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen17,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.17.',@fittysen17,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number17 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink17,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.17.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen17,'?$medium$" alt="Sale 17" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle17,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title17,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink17,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.17.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale18 == "no" then ]%%
+
+%%[ Set @big_sales_number18 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen18,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.image.18.',@fittysen18,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen18,'_Lifestyle_1?$medium$" alt="Sale18" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle18,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title18,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen18,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.18.',@fittysen18,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number18 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink18,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.18.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen18,'?$medium$" alt="Sale 18" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle18,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title18,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink18,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.18.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale19 == "no" then ]%%
+
+%%[ Set @big_sales_number19 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen19,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.image.19.',@fittysen19,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen19,'_Lifestyle_1?$medium$" alt="Sale19" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle19,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title19,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen19,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.19.',@fittysen19,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number19 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink19,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.19.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen19,'?$medium$" alt="Sale 19" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle19,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title19,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink19,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.19.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+
+%%[ if @vmf_sale20 == "no" then ]%%
+
+%%[ Set @big_sales_number20 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen20,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.image.20.',@fittysen20,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen20,'_Lifestyle_1?$medium$" alt="Sale20" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle20,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title20,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen20,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.20.',@fittysen20,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @big_sales_number20 = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink20,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.20.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen20,'?$medium$" alt="Sale 20" border="0" style="display:block;" /></a></td></tr><tr><td width="300" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle20,'</b></font></td></tr><tr><td width="300" height="4"></td></tr><tr><td valign="top" width="300"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 15px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title20,'</font></td></tr><tr><td width="300" height="11"></td></tr><tr><td><a href="',@VMFlink20,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.20.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+
+%%[ if @vmf_sale1 == "no" then ]%%
+
+%%[ Set @sales_number1 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen1,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.1.',@fittysen1,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen1,'_Lifestyle_1?$w194_h133$" alt="Sale 1" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle1,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title1,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen1,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.1.',@fittysen1,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number1 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink1,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.1.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen1,'?$w194_h133$" alt="Sale 1" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle1,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196" height=><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title1,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink1,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.1.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale2 == "no" then ]%%
+
+%%[ Set @sales_number2 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen2,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.2.',@fittysen2,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen2,'_Lifestyle_1?$w194_h133$" alt="Sale 2" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle2,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title2,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen2,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.2.',@fittysen2,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number2 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink2,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.2.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen2,'?$w194_h133$" alt="Sale 2" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle2,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title2,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink2,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.2.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale3 == "no" then ]%%
+
+%%[ Set @sales_number3 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen3,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.3.',@fittysen3,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen3,'_Lifestyle_1?$w194_h133$" alt="Sale 3" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle3,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title3,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen3,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.3.',@fittysen3,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number3 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink3,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.3.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen3,'?$w194_h133$" alt="Sale 3" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle3,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196" height=><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title3,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink3,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.3.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale4 == "no" then ]%%
+
+%%[ Set @sales_number4 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen4,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.4.',@fittysen4,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen4,'_Lifestyle_1?$w194_h133$" alt="Sale 4" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle4,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title4,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen4,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.4.',@fittysen4,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number4 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink4,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.4.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen4,'?$w194_h133$" alt="Sale 4" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle4,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title4,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink4,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.4.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale5 == "no" then ]%%
+
+%%[ Set @sales_number5 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen5,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.5.',@fittysen5,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen5,'_Lifestyle_1?$w194_h133$" alt="Sale 5" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle5,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title5,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen5,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.5.',@fittysen5,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number5 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink5,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.5.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen5,'?$w194_h133$" alt="Sale 5" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle5,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title5,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink5,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.5.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale6 == "no" then ]%%
+
+%%[ Set @sales_number6 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen6,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.6.',@fittysen6,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen6,'_Lifestyle_1?$w194_h133$" alt="Sale 6" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle6,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title6,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen6,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.6.',@fittysen6,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number6 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink6,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.6.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen6,'?$w194_h133$" alt="Sale 6" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle6,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title6,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink6,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.6.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale7 == "no" then ]%%
+
+%%[ Set @sales_number7 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen7,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.7.',@fittysen7,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen7,'_Lifestyle_1?$w194_h133$" alt="Sale 7" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle7,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title7,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen7,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.7.',@fittysen7,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number7 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink7,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.7.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen7,'?$w194_h133$" alt="Sale 7" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle7,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title7,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink7,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.7.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale8 == "no" then ]%%
+
+%%[ Set @sales_number8 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen8,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.8.',@fittysen8,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen8,'_Lifestyle_1?$w194_h133$" alt="Sale 8" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle8,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title8,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen8,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.8.',@fittysen8,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number8 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink8,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.8.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen8,'?$w194_h133$" alt="Sale 8" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle8,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title8,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink8,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.8.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale9 == "no" then ]%%
+
+%%[ Set @sales_number9 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen9,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.9.',@fittysen9,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen9,'_Lifestyle_1?$w194_h133$" alt="Sale 9" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle9,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title9,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen9,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.9.',@fittysen9,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number9 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink9,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.9.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen9,'?$w194_h133$" alt="Sale 9" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle9,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title9,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink9,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.9.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale10 == "no" then ]%%
+
+%%[ Set @sales_number10 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen10,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.10.',@fittysen10,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen10,'_Lifestyle_1?$w194_h133$" alt="Sale 10" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle10,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title10,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen10,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.10.',@fittysen10,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number10 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink10,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.10.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen10,'?$w194_h133$" alt="Sale 10" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle10,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title10,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink10,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.10.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%%
+ 
+%%[ if @vmf_sale11 == "no" then ]%%
+
+%%[ Set @sales_number11 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen11,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.11.',@fittysen11,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen11,'_Lifestyle_1?$w194_h133$" alt="Sale 11" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle11,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title11,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen11,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.11.',@fittysen11,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number11 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink11,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.11.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen11,'?$w194_h133$" alt="Sale 3" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle11,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title11,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink11,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.11.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale12 == "no" then ]%%
+
+%%[ Set @sales_number12 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen12,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.12.',@fittysen12,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen12,'_Lifestyle_1?$w194_h133$" alt="Sale 12" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle12,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title12,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen12,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.12.',@fittysen12,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number12 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink12,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.12.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen12,'?$w194_h133$" alt="Sale 12" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle12,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title12,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink12,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.12.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale13 == "no" then ]%%
+
+%%[ Set @sales_number13 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen13,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.13.',@fittysen13,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen13,'_Lifestyle_1?$w194_h133$" alt="Sale 13" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle13,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title13,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen13,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.13.',@fittysen13,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number13 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink13,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.13.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen13,'?$w194_h133$" alt="Sale 13" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle13,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title13,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink13,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.13.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale14 == "no" then ]%%
+
+%%[ Set @sales_number14 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen14,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.14.',@fittysen14,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen14,'_Lifestyle_1?$w194_h133$" alt="Sale 14" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle14,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title14,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen14,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.14.',@fittysen14,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number14 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink14,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.14.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen14,'?$w194_h133$" alt="Sale 14" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle14,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title14,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink14,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.14.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale15 == "no" then ]%%
+
+%%[ Set @sales_number15 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen15,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.15.',@fittysen15,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen15,'_Lifestyle_1?$w194_h133$" alt="Sale 15" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle15,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title15,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen15,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.15.',@fittysen15,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number15 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink15,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.15.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen15,'?$w194_h133$" alt="Sale 15" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle15,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title15,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink15,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.15.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale16 == "no" then ]%%
+
+%%[ Set @sales_number16 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen16,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.16.',@fittysen16,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen16,'_Lifestyle_1?$w194_h133$" alt="Sale 16" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle16,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title16,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen16,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.16.',@fittysen16,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%% 
+
+%%[ Set @sales_number16 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink16,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.16.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen16,'?$w194_h133$" alt="Sale 16" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle16,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title16,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink16,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.16.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale17 == "no" then ]%%
+
+%%[ Set @sales_number17 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen17,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.17.',@fittysen17,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen17,'_Lifestyle_1?$w194_h133$" alt="Sale 17" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle17,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title17,'</font></td></tr><tr><tr><td width="196" height="11"></td></tr><td><a href="https://www.onekingslane.com/sales/',@fittysen17,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.17.',@fittysen17,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number17 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink17,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.17.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen17,'?$w194_h133$" alt="Sale 17" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle17,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title17,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink17,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.17.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale18 == "no" then ]%%
+
+%%[ Set @sales_number18 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen18,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.18.',@fittysen18,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen18,'_Lifestyle_1?$w194_h133$" alt="Sale 18" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle18,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title18,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen18,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.18.',@fittysen18,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number18 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink18,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.18.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen18,'?$w194_h133$" alt="Sale 18" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle18,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title18,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink18,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.18.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale19 == "no" then ]%%
+
+%%[ Set @sales_number19 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen19,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.19.',@fittysen19,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen19,'_Lifestyle_1?$w194_h133$" alt="Sale 19" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle19,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title19,'</font></td></tr><tr><tr><td width="196" height="11"></td></tr><td><a href="https://www.onekingslane.com/sales/',@fittysen19,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.19.',@fittysen19,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number19 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink19,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.19.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen19,'?$w194_h133$" alt="Sale 19" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle19,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title19,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink19,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.19.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[ if @vmf_sale20 == "no" then ]%%
+
+%%[ Set @sales_number20 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/sales/',@fittysen20,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.20.',@fittysen20,'"><img src="https://okl.scene7.com/is/image/OKL/SalesEvent_',@fittysen20,'_Lifestyle_1?$w194_h133$" alt="Sale 20" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle20,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title20,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="https://www.onekingslane.com/sales/',@fittysen20,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.20.',@fittysen20,'"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ else ]%%
+
+%%[ Set @sales_number20 = concat('<td valign="top"></td><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="',@VMFlink20,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Image.20.VMF"><img src="https://okl.scene7.com/is/image/OKL/',@fittysen20,'?$w194_h133$" alt="Sale 20" border="0" style="display:block;" /></a></td></tr><tr><td width="196" height="14"></td></tr><tr><td valign="top" height="5"><font style="color:#999999; font-family:  Arial, Helvetica Neue, Helvetica, serif; font-size: 10px; letter-spacing: 0.50px;"><b>',@fittysentitle20,'</b></font></td></tr><tr><td width="196" height="4"></td></tr><tr><td valign="top" width="196"><font style="color:#333333; font-family: Georgia, Helvetica, sans-serif; font-size: 14px; letter-spacing: 0.60px;" word-wrap:break-word;>',@title20,'</font></td></tr><tr><td width="196" height="11"></td></tr><tr><td><a href="',@VMFlink20,'?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=New_Sales.Button.20.VMF"><img src="https://okl.scene7.com/is/image/OKL/email_shop_now1-1-1?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></table></td>') ]%%
+
+%%[ endif ]%% 
+
+%%[
+SET @big_gIFt_card = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/e-gIFt-card?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=GIFt_Card.1"><img src="https://okl.scene7.com/is/image/OKL/electronic_gIFt_card?$w298_h203$" alt="GIFt Card" border="0" style="display:block;" /></a></td></tr><tr><td height="10"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td><table border="0" cellspacing="0" cellpadding="0" width="211"><tr><td valign="top"><font style="color:#333333; font-family: Georgia, ',@Times_New_Roman,', serIF; font-size: 16px;"><b>One Kings Lane GIFt Card</b></font></td></tr><tr><td valign="bottom"><table border="0" cellspacing="0" cellpadding="0" width="20"><tr><td valign="bottom" style="border-bottom:1px solid #c0bcae;"><img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gIF&wid=20" border="0" width="20" height="7" style="display:block;" /></td></tr></table></td></tr></table></td><td width="15" height="10"></td><td align="right" valign="top"><a href="https://www.onekingslane.com/e-gIFt-card?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=GIFt_Card.Button.1"><img src="https://okl.scene7.com/is/image/OKL/email_refresh_button?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></tr></table></td></tr><tr><td height="7"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td><font style="color:#666666; font-family: Arial, Helvetica, sans-serIF; font-size: 12px; letter-spacing: 0.60px;">GIVE THE ART OF LIVING WELL</font></td><td width="30">&nbsp;</td></tr></table></td></tr><tr><td height="5"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td valign="top"><font style="color:#666666; font-family: Georgia, ',@Times_New_Roman,', serIF; font-size: 12px; letter-spacing: 0.4px;">Instant gratification: The One Kings Lane E-GIFt Card is always in good taste.</font></td><td width="10">&nbsp;</td></tr></table></td></tr></table></td>')
+
+SET @gIFt_card = concat('<td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td style="border:1px solid #c0bcae;"><a href="https://www.onekingslane.com/e-gIFt-card?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=GIFt_Card.1"><img src="https://okl.scene7.com/is/image/OKL/electronic_gIFt_card?$w194_h133$" alt="GIFt Card" border="0" style="display:block;" /></a></td></tr><tr><td height="10"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td><table border="0" cellspacing="0" cellpadding="0" width="112"><tr><td valign="top"><font style="color:#333333; font-family: Georgia, ',@Times_New_Roman,', serIF; font-size: 15px;"><b>One Kings Lane GIFt Card</b></font></td></tr><tr><td valign="bottom"><table border="0" cellspacing="0" cellpadding="0" width="20"><tr><td valign="bottom" style="border-bottom:1px solid #c0bcae;"><img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gIF&hei=7" border="0" style="display:block;" /></td></tr></table></td></tr></table></td><td width="10"></td><td align="right" valign="top"><a href="https://www.onekingslane.com/e-gIFt-card?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%&utm_term=GIFt_Card.Button.1"><img src="https://okl.scene7.com/is/image/OKL/email_refresh_button?$w74_h24$" alt="Shop Now" border="0" style="display:block;" /></a></td></tr></table></td></tr><tr><td height="7"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td><font style="color:#666666; font-family: Arial, Helvetica, sans-serIF; font-size: 12px; letter-spacing: 0.60px;">GIVE THE ART OF LIVING WELL</font></td><td width="30">&nbsp;</td></tr></table></td></tr><tr><td height="5"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="196"><tr><td valign="top"><font style="color:#666666; font-family: Georgia, ',@Times_New_Roman,', serIF; font-size: 12px; letter-spacing: 0.4px;">Instant gratification: The One Kings Lane E-GIFt Card is always in good taste.</font></td><td width="5">&nbsp;</td></tr></table></td></tr></table></td>')
+]%%
+
+<div style="display:none; font-size:1px; color:#FFFFFF;">%%=v(@preview_copy)=%%</div>
+<table bgcolor="#ffffff" border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
+<tr><td><img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gIF&wid=100" border="0" width="100" height="1" style="display:block;"></td></tr>
+<tr>
+	<td>
+    	<table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td><img src="http://p.tellapart.com/tem?c=%%=v(@campaign_path)=%%&src=MQvTZrFduqGP&suid=%%=v(@customer_id)=%%&edate=%%=v(@milli_dIFference)=%%&ehash=%%=MD5(emailaddr)=%%" 
+            height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=0" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=1" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=2" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=3" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=4" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=5" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=6" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=7" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=8" height="1" width="1" border="0" />
+                </td>
+                <td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=9" height="1" width="1" border="0" />
+                </td>
+                <td>%%[IF @dayofweek == "Wednesday" or @dayofweek == "Saturday" THEN]%%<img src="%%=RedirectTo(@RPpixel)=%%" height="1" width="1" style="border:0" />%%[ENDIF]%%
+                </td>
+                <td><custom name="opencounter" type="tracking">
+                </td>
+            </tr>
+            </table>
+    </td>
+</tr>
+
+%%= TreatAsContentArea("TACA_Key_Header1",@daily_header) =%%
+%%[ IF @count == 1 then]%%
+%%= TreatAsContentArea("TACA_Key_Pref_Banner",@pref_banner) =%%
+%%[ elseIF @daily_banner_display == "yes" then ]%%
+%%= TreatAsContentArea("TACA_Key_Daily_Banner",@daily_banner) =%%
+%%[ endIF ]%%
+
+<tr>
+    	<td>
+        	<table border="0" cellspacing="0" cellpadding="0" width="650" align="center">
+            	<tr>
+                	
+%%[
+For @i = 1 to @total_daily_sales do
+	SET @Sort_Order_Row = Row(@Sort_Order_RowSET,@i)
+    SET @SKU = Field(@Sort_Order_Row,1)
+    SET @SKU_BIG = Concat(@SKU,"_BIG")
+    
+    					IF @SKU == @fittysen1 then ]%%
+                        	%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number1,"Impression Region 01") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number1,"Impression Region 01") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number1,"Impression Region 01") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen2 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number2,"Impression Region 02") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number2,"Impression Region 02") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number2,"Impression Region 02") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen3 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number3,"Impression Region 03") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number3,"Impression Region 03") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number3,"Impression Region 03") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen4 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number4,"Impression Region 04") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number4,"Impression Region 04") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number4,"Impression Region 04") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen5 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number5,"Impression Region 05") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number5,"Impression Region 05") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number5,"Impression Region 05") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen6 then ]%%
+						%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number6,"Impression Region 06") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number6,"Impression Region 06") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number6,"Impression Region 06") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen7 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number7,"Impression Region 07") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number7,"Impression Region 07") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number7,"Impression Region 07") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen8 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number8,"Impression Region 08") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number8,"Impression Region 08") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number8,"Impression Region 08") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen9 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number9,"Impression Region 09") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number9,"Impression Region 09") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number9,"Impression Region 09") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen10 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number10,"Impression Region 10") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number10,"Impression Region 10") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number10,"Impression Region 10") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen11 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number11,"Impression Region 11") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number11,"Impression Region 11") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number11,"Impression Region 11") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen12 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number12,"Impression Region 12") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number12,"Impression Region 12") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number12,"Impression Region 12") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen13 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number13,"Impression Region 13") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number13,"Impression Region 13") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number13,"Impression Region 13") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen14 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number14,"Impression Region 14") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number14,"Impression Region 14") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number14,"Impression Region 14") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen15 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number15,"Impression Region 15") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number15,"Impression Region 15") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number15,"Impression Region 15") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen16 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number16,"Impression Region 16") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number16,"Impression Region 16") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number16,"Impression Region 16") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen17 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number17,"Impression Region 17") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number17,"Impression Region 17") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number17,"Impression Region 17") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen18 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number18,"Impression Region 18") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number18,"Impression Region 18") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number18,"Impression Region 18") =%%
+                            %%[ENDIF]%%
+                        
+                    	%%[ elseIF @SKU == @fittysen19 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number19,"Impression Region 19") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number19,"Impression Region 19") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number19,"Impression Region 19") =%%
+                            %%[ENDIF]%%
+                        
+                        %%[ elseIF @SKU == @fittysen20 then ]%%
+							%%[ IF @Layout == "2x3" THEN]%%
+                            	%%[IF @i == 1 OR @i == 2 OR @i == 6 OR @i == 7 OR @i == 11 OR @i == 12 OR @i == 16 OR @i == 17 THEN]%%
+                                	%%= TreatAsContentArea(@SKU_BIG,@big_sales_number20,"Impression Region 20") =%%
+                                %%[ELSE]%%
+                                	%%= TreatAsContentArea(@SKU,@sales_number20,"Impression Region 20") =%%
+                                %%[ENDIF]%%
+                            %%[ELSE]%%
+							%%= TreatAsContentArea(@SKU_BIG,@big_sales_number20,"Impression Region 20") =%%
+                            %%[ENDIF]%%
+                        %%[ENDIF]%%
+
+%%[IF @Layout == "2x2" THEN]%%
+    %%[IF @i == 2 OR @i == 4 OR @i == 6 OR @i == 8 OR @i == 10 OR @i == 12 OR @i == 14 OR @i == 16 OR @i == 18 THEN]%%
+     </tr></table></td></tr><tr><td style="padding-top:25px;"><table cellpadding="0" cellspacing="0" border="0" align="center" width="650"><tr>
+     %%[ELSE]%%
+     <td width="50" height="25"></td>
+    %%[ENDIF]%%  
+%%[ELSE]%%
+	%%[IF @i == 2 OR @i == 5 OR @i == 7 OR @i == 10 OR @i == 12 OR @i == 15 OR @i == 17 THEN]%%
+     </tr></table></td></tr><tr><td style="padding-top:25px;"><table cellpadding="0" cellspacing="0" border="0" align="center" width="650"><tr>
+     %%[ELSEIF @i == 1 OR @i == 6 OR @i == 11 OR @i == 16 THEN]%%
+     <td width="50" height="25"></td>
+     %%[ELSE]%%
+     <td width="31" height="25"></td>
+     %%[ENDIF]%%
+%%[ENDIF]%%
+
+%%[IF @i == @total_daily_sales THEN]%%
+	%%[IF @i == 4 OR @i == 9 OR @i == 14 OR @i == 19 THEN]%%
+		<td width="196" height="25"></td>
+    %%[ENDIF]%%
+%%[ENDIF]%%
+
+
+%%[    
+next @i    
+]%%
+
+</tr><tr><td style="padding-top:25px;"></td></tr></table></td></tr>
+
+%%= TreatAsContentArea("TACA_Key_Last_Chance_Title",@daily_last_chance_title) =%%
+
+<!--START OF ENDING SALES SECTION-->
+
+
+<tr><td height="10"></td></tr>
+
+%%[
+SET @last_chance_date = FORMAT(DateAdd(@day_of_sale,"-2","D"),"MM/dd/yyyy")
+SET @last_chance_date = Concat(@last_chance_date," 08:00:00 AM")
+Set @rows = LookupOrderedRows("Sales -- PRODUCTION",0,"name desc","started_on", @last_chance_date)
+Set @total_sales = RowCount(@rows)
+Set @row_number = 1
+           
+]%%
+
+	<tr>
+    	<td>
+        	<table border="0" cellspacing="0" cellpadding="0" width="650" align="center">
+            	<tr>
+        
+%%[ 
+for @cell_number = 1 to 4 do
+]%% 
+                
+	%%[ IF @total_sales >= @cell_number then 
+        
+        SET @row = Row(@rows,@row_number) 
+        SET @Last_Chance_Sale_Title = Field(@row, 'name')   
+         
+        IF @Last_Chance_Sale_Title == "The Paris Apartment" then
+        SET @row_number = Add(@row_number,1)
+        endIF    
+        
+
+	
+		SET @row = Row(@rows,@row_number) 
+		SET @URL_LC_LIFestyle = Concat(Field(@row, 'link'),'?utm_source=Daily&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@day_of_sale,'.',_subscriberkey,'&utm_term=Last_Chance.Image.',@row_number,'.',Field(@row, 'sales_event_id'))
+		SET @URL_LC_Button = Concat(Field(@row, 'link'),'?utm_source=Daily&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@day_of_sale,'.',_subscriberkey,'&utm_term=Last_Chance.Image.',@row_number,'.',Field(@row, 'sales_event_id'))
+		SET @Last_Chance_Sale_Image = Field(@row, 'image')
+      	SET @Last_Chance_Sale_Title = Field(@row, 'name')
+        
+        <!--PUT SYMBOL PROCESSING HERE-->
+        SET @Last_Chance_Sale_Title = Replace(@Last_Chance_Sale_Title, "ç", "&ccedil;")
+        SET @Last_Chance_Sale_Title = Replace(@Last_Chance_Sale_Title, "ó", "&oacute;")  
+        
+        
+        <!--END SYMBOL PROCESSING HERE-->
+        
+		SET @Last_Chance_Sale_Button_Redirect = RedirectTo(v(@URL_LC_Button))   
+		SET @Last_Chance_Sale_Image_Redirect = RedirectTo(v(@URL_LC_LIFestyle))
+                                    
+		SET @TACA_Key_Last_Chance_Sale = concat('TACA_Key_Last_Chance_Sale',@row_number)
+		SET @Last_Chance_Sale = concat('<td valign="top" width="149"><table border="0" cellspacing="0" cellpadding="0" width="149"><tr><td width="147" style="border:1px solid #c0bcae;"><a href="',@Last_Chance_Sale_Image_Redirect,'"><img src="',@Last_Chance_Sale_Image,'" alt="Last Chance',@row_number,'" style="display:block;" border="0" width="149" /></a></td></tr><tr><td width="149" height="7"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="149" height="42"><tr><td valign="top" width="149"><font style="color:#797979; font-family: Georgia, ',@Times_New_Roman,', serif; font-size: 13px;">',@Last_Chance_Sale_Title,'</font></td></tr></table></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="147"><tr><td style="font-family:Arial, Helvetica, sans-serif; font-size: 10px; "><a href="',@Last_Chance_Sale_Button_Redirect,'" style="text-decoration:none;"><font color="#f96b42"><b> SHOP NOW</b></font></a></td></tr></table></td></tr></table></td>')    
+	]%%  
+                                
+	%%= TreatAsContentArea(@TACA_Key_Last_Chance_Sale, @Last_Chance_Sale) =%%
+ 
+	%%[ else ]%%
+		<td width="149">&nbsp;
+		</td> 
+	%%[ endIF ]%%
+    
+	%%[ IF mod(@cell_number , 4) != 0 then ]%% 
+	<td width="18">&nbsp;
+	</td>
+	%%[ endIF ]%%
+
+%%[ SET @row_number = Add(@row_number,1)
+    next @cell_number 
+]%%  
+
+              	</tr>
+        	</table>
+      	</td>
+	</tr>
+
+
+ <!--END OF ENDING SALES SECTION-->
+
+%%[ if @prefooter_display == "yes" then ]%%
+%%= TreatAsContentArea("TACA_Key_Daily_Prefooter",@daily_prefooter) =%%
+%%[ endif ]%%  
+
+
+%%= TreatAsContentArea("TACA_Key_Daily_Upcoming_Events",@daily_upcoming_events) =%% 
+
+
+
+
+<tr>
+<td>
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="650">
+<tr>
+<td height="7">
+</td>
+</tr>
+<tr>
+<td align="center">
+<font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px;">
+2013 One Kings Lane&reg; All rights reserved.  One Kings Lane and the elephant logo are registered trademarks of One Kings Lane Inc.</font><BR><br>
+<font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px;">Tastemaker Tag Sales&trade; is a trademark of One Kings Lane Inc.  Corp.  Address: 1355 Market Street Suite 400, San Francisco, CA 94103</font><BR><BR>
+<a href="https://www.onekingslane.com/privacy?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Privacy_Policy.1" style="text-decoration:none">
+<font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 11px;">PRIVACY POLICY</font>
+</a> &nbsp; | &nbsp; <a href="https://www.onekingslane.com/contact-us?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Contact_Us.1" style="text-decoration:none"><font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 11px;">
+CONTACT US</font></a>  &nbsp; | &nbsp; <a href="https://www.onekingslane.com/corporate/careers/?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Hiring.1" style="text-decoration:none"><font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 11px;">HIRING</font></a>
+&nbsp; | &nbsp; <a href="%%=RedirectTo(v(@URL_Unsubscribe))=%%" style="text-decoration:none"><font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 11px;">UNSUBSCRIBE</font></a>
+</td>
+</tr>
+
+<tr>
+<td>
+<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gif-alpha&wid=15" border="0" width="15" height="15" style="display:block;" />
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<table align="center" cellpadding="0" cellspacing="0" width="650">
+<tr>
+<td align="center">
+<a href="http://twitter.com/onekingslane"><img src="https://okl.scene7.com/is/image/OKL/twitter_02.062012.gif?fmt=gif&wid=32" alt="OKL Twitter" border="0" width="32" height="30" /></a>
+<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gif-alpha&wid=5" border="0" width="5" height="15" />
+<a href="http://www.facebook.com/OneKingsLane"><img src="https://okl.scene7.com/is/image/OKL/fb_02.062012?fmt=gif&wid=32" alt="OKL Facebook" border="0" width="32" height="30" /></a>
+<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gif-alpha&wid=5" border="0" width="5" height="15" />
+<a href="http://pinterest.com/onekingslane/"><img src="https://okl.scene7.com/is/image/OKL/iphone_02.062012.gif?fmt=gif&wid=32" border="0" width="32" height="30" /></a>
+<img src="https://okl.scene7.com/is/image/OKL/spacer_002?fmt=gif-alpha&wid=5" border="0" width="3" height="15" />
+<a href="http://itunes.apple.com/us/app/one-kings-lane/id403827899"><img src="https://okl.scene7.com/is/image/OKL/iphone_02.222012b?fmt=gif&wid=32" border="0" width="32" height="34" /></a>
+</td> 
+</tr>
+</table>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</tr>
+
+<tr><td height="30"></td></tr></table></body></html>
