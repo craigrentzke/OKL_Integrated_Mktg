@@ -3,7 +3,7 @@
 %%[
 <!-- TEMPLATE VARIABLE DECLARATION START -->
 /* SET day and time */
-SET @Day_of_Sale = "08/07/2013"
+SET @Day_of_Sale = "08/15/2013"
 SET @SentDate = Now()
 SET @Email_Type = "am"
 SET @date_str= xtshortdate
@@ -14,7 +14,7 @@ SET @RPmonth = DatePart(@RPdate,"M")
 SET @RPday = DatePart(@RPdate,"D")
 SET @RPyear = DatePart(@RPdate,"Y")
 SET @RPdate = Concat("okl",@RPyear,@RPmonth,@RPday,"0")
-SET @RPpixel = Concat("http://pixel.monitor1.returnpath.net/pixel.gIf?r=6899c41dcc18ee37d5f9045d1dda6570a8093c0f&date=",@RPmonth,"/",@RPday,"/",@RPyear)
+SET @RPpixel = Concat("http://pixel.monitor1.returnpath.net/pixel.gif?r=6899c41dcc18ee37d5f9045d1dda6570a8093c0f&date=",@RPmonth,"/",@RPday,"/",@RPyear)
 ]%%
 <!-- rpcampaign: %%=v(@RPdate)=%%-->
 
@@ -64,7 +64,131 @@ for @i = 1 to Rowcount(@Template_UI_Email_SBS) do
             SET @bucket_UI_var = Field(@bucket_UI_Row,1)
             
                 SET @dash = IndexOf(@bucket_UI_var,"-")
-                SET @Bucket_Start = Substring(@bucket_UI_var,1,Subtract(@dash,1))
+                
+                IF @dash == 0
+                THEN
+                	IF @bucket_UI_var == @Bucket
+                    THEN
+                    	SET @yes = "yes"
+                            	SET @bucketID = @bucket_UI
+                                SET @Sort_Order = Field(@rowXX, 'Sort_Order')
+                                SET @Layout = Field(@rowXX, 'Layout')
+                                SET @Subject_Line = Field(@rowXX, 'Subject_Line')
+                                SET @Preview_Copy = Field(@rowXX, 'Preview_Copy')
+                                SET @Daily_Banner_Display = Field(@rowXX, 'Daily_Banner_Display')
+                                SET @Daily_Banner_Name = Field(@rowXX, 'Daily_Banner_Name')
+                                SET @Daily_Banner_Linking = Field(@rowXX, 'Daily_Banner_Linking')
+                                SET @Daily_Banner_Link = Field(@rowXX, 'Daily_Banner_Link')
+                                SET @Daily_Banner_Format = Field(@rowXX, 'Daily_Banner_Format')
+                                SET @Prefooter_Display = Field(@rowXX, 'Prefooter_Display')
+                                SET @Daily_Prefooter = Field(@rowXX, 'Daily_Prefooter')
+                                SET @Daily_Prefooter_Link = Field(@rowXX, 'Daily_Prefooter_Link')
+                                SET @Daily_Prefooter_Format = Field(@rowXX, 'Daily_Prefooter_Format')
+                                
+                                SET @fittysen1 = Field(@rowXX,'fittysen1')
+                                SET @fittysentitle1 = Uppercase(Field(@rowXX,'fittysentitle1'))
+                                SET @fittysendescription1 = Field(@rowXX,'fittysendescription1')
+                                SET @VMF_Sale1 = Field(@rowXX,'VMF_Sale1')
+                                SET @VMFLink1 = Field(@rowXX,'VMF_Link1')
+                                SET @fittysen2 = Field(@rowXX,'fittysen2')
+                                SET @fittysentitle2 = Uppercase(Field(@rowXX,'fittysentitle2'))
+                                SET @fittysendescription2 = Field(@rowXX,'fittysendescription2')
+                                SET @VMF_Sale2 = Field(@rowXX,'VMF_Sale2')
+                                SET @VMFLink2 = Field(@rowXX,'VMF_Link2')
+                                SET @fittysen3 = Field(@rowXX,'fittysen3')
+                                SET @fittysentitle3 = Uppercase(Field(@rowXX,'fittysentitle3'))
+                                SET @fittysendescription3 = Field(@rowXX,'fittysendescription3')
+                                SET @VMF_Sale3 = Field(@rowXX,'VMF_Sale3')
+                                SET @VMFLink3 = Field(@rowXX,'VMF_Link3')
+                                SET @fittysen4 = Field(@rowXX,'fittysen4')
+                                SET @fittysentitle4 = Uppercase(Field(@rowXX,'fittysentitle4'))
+                                SET @fittysendescription4 = Field(@rowXX,'fittysendescription4')
+                                SET @VMF_Sale4 = Field(@rowXX,'VMF_Sale4')
+                                SET @VMFLink4 = Field(@rowXX,'VMF_Link4')
+                                SET @fittysen5 = Field(@rowXX,'fittysen5')
+                                SET @fittysentitle5 = Uppercase(Field(@rowXX,'fittysentitle5'))
+                                SET @fittysendescription5 = Field(@rowXX,'fittysendescription5')
+                                SET @VMF_Sale5 = Field(@rowXX,'VMF_Sale5')
+                                SET @VMFLink5 = Field(@rowXX,'VMF_Link5')
+                                SET @fittysen6 = Field(@rowXX,'fittysen6')
+                                SET @fittysentitle6 = Uppercase(Field(@rowXX,'fittysentitle6'))
+                                SET @fittysendescription6 = Field(@rowXX,'fittysendescription6')
+                                SET @VMF_Sale6 = Field(@rowXX,'VMF_Sale6')
+                                SET @VMFLink6 = Field(@rowXX,'VMF_Link6')
+                                SET @fittysen7 = Field(@rowXX,'fittysen7')
+                                SET @fittysentitle7 = Uppercase(Field(@rowXX,'fittysentitle7'))
+                                SET @fittysendescription7 = Field(@rowXX,'fittysendescription7')
+                                SET @VMF_Sale7 = Field(@rowXX,'VMF_Sale7')
+                                SET @VMFLink7 = Field(@rowXX,'VMF_Link7')
+                                SET @fittysen8 = Field(@rowXX,'fittysen8')
+                                SET @fittysentitle8 = Uppercase(Field(@rowXX,'fittysentitle8'))
+                                SET @fittysendescription8 = Field(@rowXX,'fittysendescription8')
+                                SET @VMF_Sale8 = Field(@rowXX,'VMF_Sale8')
+                                SET @VMFLink8 = Field(@rowXX,'VMF_Link8')
+                                SET @fittysen9 = Field(@rowXX,'fittysen9')
+                                SET @fittysentitle9 = Uppercase(Field(@rowXX,'fittysentitle9'))
+                                SET @fittysendescription9 = Field(@rowXX,'fittysendescription9')
+                                SET @VMF_Sale9 = Field(@rowXX,'VMF_Sale9')
+                                SET @VMFLink9 = Field(@rowXX,'VMF_Link9')
+                                SET @fittysen10 = Field(@rowXX,'fittysen10')
+                                SET @fittysentitle10 = Uppercase(Field(@rowXX,'fittysentitle10'))
+                                SET @fittysendescription10 = Field(@rowXX,'fittysendescription10')
+                                SET @VMF_Sale10 = Field(@rowXX,'VMF_Sale10')
+                                SET @VMFLink10 = Field(@rowXX,'VMF_Link10')
+                                SET @fittysen11 = Field(@rowXX,'fittysen11')
+                                SET @fittysentitle11 = Uppercase(Field(@rowXX,'fittysentitle11'))
+                                SET @fittysendescription11 = Field(@rowXX,'fittysendescription11')
+                                SET @VMF_Sale11 = Field(@rowXX,'VMF_Sale11')
+                                SET @VMFLink11 = Field(@rowXX,'VMF_Link11')
+                                SET @fittysen12 = Field(@rowXX,'fittysen12')
+                                SET @fittysentitle12 = Uppercase(Field(@rowXX,'fittysentitle12'))
+                                SET @fittysendescription12 = Field(@rowXX,'fittysendescription12')
+                                SET @VMF_Sale12 = Field(@rowXX,'VMF_Sale12')
+                                SET @VMFLink12 = Field(@rowXX,'VMF_Link12')
+                                SET @fittysen13 = Field(@rowXX,'fittysen13')
+                                SET @fittysentitle13 = Uppercase(Field(@rowXX,'fittysentitle13'))
+                                SET @fittysendescription13 = Field(@rowXX,'fittysendescription13')
+                                SET @VMF_Sale13 = Field(@rowXX,'VMF_Sale13')
+                                SET @VMFLink13 = Field(@rowXX,'VMF_Link13')
+                                SET @fittysen14 = Field(@rowXX,'fittysen14')
+                                SET @fittysentitle14 = Uppercase(Field(@rowXX,'fittysentitle14'))
+                                SET @fittysendescription14 = Field(@rowXX,'fittysendescription14')
+                                SET @VMF_Sale14 = Field(@rowXX,'VMF_Sale14')
+
+                                SET @VMFLink14 = Field(@rowXX,'VMF_Link14')
+                                SET @fittysen15 = Field(@rowXX,'fittysen15')
+                                SET @fittysentitle15 = Uppercase(Field(@rowXX,'fittysentitle15'))
+                                SET @fittysendescription15 = Field(@rowXX,'fittysendescription15')
+                                SET @VMF_Sale15 = Field(@rowXX,'VMF_Sale15')
+                                SET @VMFLink15 = Field(@rowXX,'VMF_Link15')
+                                SET @fittysen16 = Field(@rowXX,'fittysen16')
+                                SET @fittysentitle16 = Uppercase(Field(@rowXX,'fittysentitle16'))
+                                SET @fittysendescription16 = Field(@rowXX,'fittysendescription16')
+                                SET @VMF_Sale16 = Field(@rowXX,'VMF_Sale16')
+                                SET @VMFLink16 = Field(@rowXX,'VMF_Link16')
+                                SET @fittysen17 = Field(@rowXX,'fittysen17')
+                                SET @fittysentitle17 = Uppercase(Field(@rowXX,'fittysentitle17'))
+                                SET @fittysendescription17 = Field(@rowXX,'fittysendescription17')
+                                SET @VMF_Sale17 = Field(@rowXX,'VMF_Sale17')
+                                SET @VMFLink17 = Field(@rowXX,'VMF_Link17')
+                                SET @fittysen18 = Field(@rowXX,'fittysen18')
+                                SET @fittysentitle18 = Uppercase(Field(@rowXX,'fittysentitle18'))
+                                SET @fittysendescription18 = Field(@rowXX,'fittysendescription18')
+                                SET @VMF_Sale18 = Field(@rowXX,'VMF_Sale18')
+                                SET @VMFLink18 = Field(@rowXX,'VMF_Link18')
+                                SET @fittysen19 = Field(@rowXX,'fittysen19')
+                                SET @fittysentitle19 = Uppercase(Field(@rowXX,'fittysentitle19'))
+                                SET @fittysendescription19 = Field(@rowXX,'fittysendescription19')
+                                SET @VMF_Sale19 = Field(@rowXX,'VMF_Sale19')
+                                SET @VMFLink19 = Field(@rowXX,'VMF_Link19')
+                                SET @fittysen20 = Field(@rowXX,'fittysen20')
+                                SET @fittysentitle20 = Uppercase(Field(@rowXX,'fittysentitle20'))
+                                SET @fittysendescription20 = Field(@rowXX,'fittysendescription20')
+                                SET @VMF_Sale20 = Field(@rowXX,'VMF_Sale20')
+                                SET @VMFLink20 = Field(@rowXX,'VMF_Link20')
+                    ENDIF
+                ELSE
+                	SET @Bucket_Start = Substring(@bucket_UI_var,1,Subtract(@dash,1))
                 SET @Bucket_Finish = Substring(@bucket_UI_var,Add(@dash,1),Length(@Bucket_UI))
                 
                 IF @Bucket >= @Bucket_Start 
@@ -190,6 +314,9 @@ for @i = 1 to Rowcount(@Template_UI_Email_SBS) do
                                 SET @VMFLink20 = Field(@rowXX,'VMF_Link20')
                             ENDIF
                 ENDIF
+                ENDIF
+                
+                
             next @x 
         ENDIF
 ]%%
