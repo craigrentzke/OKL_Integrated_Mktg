@@ -1725,13 +1725,16 @@ next @i
 
 %%[
 SET @last_chance_date = FORMAT(DateAdd(@day_of_sale,"-1","D"),"MM/dd/yyyy")
-SET @last_chance_date = Concat(@last_chance_date," 06:00:00 PM")
-Set @rows = LookupOrderedRows("Sales -- PRODUCTION",0,"ended_on desc","started_on", @last_chance_date)
+
+SET @akamai_last_folder_month = Substring(@last_chance_date,1,2)
+SET @akamai_last_folder_day = Substring(@last_chance_date,4,2)
+SET @akamai_last_folder = Concat(@akamai_last_folder_month,@akamai_last_folder_day,"13")
+
+SET @last_chance_date = Concat(@last_chance_date," 08:00:00 AM")
+Set @rows = LookupOrderedRows("Sales -- PRODUCTION",0,"name desc","started_on", @last_chance_date)
 Set @total_sales = RowCount(@rows)
 Set @row_number = 1
-
-
-    
+           
 ]%%
 
 	<tr>
@@ -1739,78 +1742,47 @@ Set @row_number = 1
         	<table border="0" cellspacing="0" cellpadding="0" width="650" align="center">
             	<tr>
         
-        
-
- 
-                
 %%[ 
 for @cell_number = 1 to 4 do
 ]%% 
                 
-	%%[ if @total_sales >= @cell_number then 
+	%%[ IF @total_sales >= @cell_number then 
         
-        Set @row = Row(@rows,@row_number) 
-        Set @Last_Chance_Sale_Title = Field(@row, 'name')   
+        SET @row = Row(@rows,@row_number) 
+        SET @Last_Chance_Sale_Title = Field(@row, 'name')   
          
-        if @Last_Chance_Sale_Title == "Vintage Accessories: HermÃ¨s, Fendi & More" then
-        Set @row_number = Add(@row_number,1)
-        endif
+        IF @Last_Chance_Sale_Title == "GIFts Under $50" then
+        SET @row_number = Add(@row_number,1)
+        endIF    
         
-		Set @row = Row(@rows,@row_number) 
-		Set @URL_LC_Lifestyle = Concat(Field(@row, 'link'),'?utm_source=Daily&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@day_of_sale,'.',_subscriberkey,'&utm_term=Last_Chance.Image.',@row_number,'.',Field(@row, 'sales_event_id'))
-		Set @URL_LC_Button = Concat(Field(@row, 'link'),'?utm_source=Daily&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@day_of_sale,'.',_subscriberkey,'&utm_term=Last_Chance.Image.',@row_number,'.',Field(@row, 'sales_event_id'))
-		Set @Last_Chance_Sale_Image = Field(@row, 'image')
-      	Set @Last_Chance_Sale_Title = Field(@row, 'description')
-        SET @symbol = @Last_Chance_Sale_Title
+
+	
+		SET @row = Row(@rows,@row_number) 
+		SET @URL_LC_LIFestyle = Concat(Field(@row, 'link'),'?utm_source=Daily&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@day_of_sale,'.',_subscriberkey,'&utm_term=Last_Chance.Image.',@row_number,'.',Field(@row, 'sales_event_id'))
+		SET @URL_LC_Button = Concat(Field(@row, 'link'),'?utm_source=Daily&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@day_of_sale,'.',_subscriberkey,'&utm_term=Last_Chance.Image.',@row_number,'.',Field(@row, 'sales_event_id'))
+		SET @Last_Chance_Sale_Image = Field(@row, 'image')
         
-<!--SYMBOL PROCESSING HERE-->
-<!-- Step 1 - Change the number 5 to the position in ending soon (1,2,3 or 4) -->
-IF @cell_number == 5 THEN
-
-<!-- Step 2 Put the word after the funky symbol here i.e. Prove!^al Marketplace you would put al Marketplace -->
-SET @wordIndex = IndexOf(@Last_Chance_Sale_Title,"al Marketplace")
-
-SET @length = Add(Subtract(length(@symbol),@wordIndex),1)
-SET @newSymbol = Substring(@symbol,@wordIndex,@length)
-
-<!-- Step 3 - Put the word(s) right before the funky symbol here i.e. Proven!^al Marketplace you would put Provenç -->
-SET @Last_Chance_Sale_Title = Concat("Provenç",@newSymbol)
-
-ENDIF
-<!--END SYMBOL PROCESSING HERE-->
-
-SET @endingsoon = @Last_Chance_Sale_Title
-SET @endingsoon_length = Length(@endingsoon)
-SET @flag = 0
-
-IF (@endingsoon_length > 50) THEN
-
-IF (Substring(@endingsoon,48,1) == " ") THEN
-
-SET @endingsoon = Concat(Substring(@endingsoon,1,47),'...')
-
-ELSE
-
-FOR @counter = 47 DOWNTO 2 DO
-
-IF ( (Substring(@endingsoon,@counter,1) == " ") AND @flag == 0  ) THEN
-
-SET @flag = 1
-SET @index = Subtract(@counter,1)
-SET @endingsoon = Concat(Substring(@endingsoon,1,@index),'...')
-ENDIF        
-
-NEXT @counter
-
-ENDIF
-
-ENDIF
+        SET @Last_Chance_Sale_Image = Replace(@Last_Chance_Sale_Image, "https://okl.scene7.com/is/image/OKL/", "http://onekingslane1-a.akamaihd.net/")
         
-		Set @Last_Chance_Sale_Button_Redirect = RedirectTo(v(@URL_LC_Button))   
-		Set @Last_Chance_Sale_Image_Redirect = RedirectTo(v(@URL_LC_Lifestyle))
+        SET @last_chance_akamai = Concat("http://onekingslane1-a.akamaihd.net/",@akamai_last_folder,"/")
+        
+        SET @Last_Chance_Sale_Image = Replace(@Last_Chance_Sale_Image, "http://onekingslane1-a.akamaihd.net/", @last_chance_akamai)
+        SET @Last_Chance_Sale_Image = Replace(@Last_Chance_Sale_Image, "?$w149_h102$", "_extra_small.jpg")
+        
+      	SET @Last_Chance_Sale_Title = Field(@row, 'name')
+        
+        <!--PUT SYMBOL PROCESSING HERE-->
+        SET @Last_Chance_Sale_Title = Replace(@Last_Chance_Sale_Title, "ç", "&ccedil;")
+        SET @Last_Chance_Sale_Title = Replace(@Last_Chance_Sale_Title, "ó", "&oacute;")  
+        
+        
+        <!--END SYMBOL PROCESSING HERE-->
+        
+		SET @Last_Chance_Sale_Button_Redirect = RedirectTo(v(@URL_LC_Button))   
+		SET @Last_Chance_Sale_Image_Redirect = RedirectTo(v(@URL_LC_LIFestyle))
                                     
-		Set @TACA_Key_Last_Chance_Sale = concat('TACA_Key_Last_Chance_Sale',@row_number)
-		Set @Last_Chance_Sale = concat('<td valign="top" width="149"><table border="0" cellspacing="0" cellpadding="0" width="149"><tr><td width="147" style="border:1px solid #c0bcae;"><a href="',@Last_Chance_Sale_Image_Redirect,'"><img src="',@Last_Chance_Sale_Image,'" alt="Last Chance',@row_number,'" style="display:block;" border="0" width="149" /></a></td></tr><tr><td width="149" height="7"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="149" height="42"><tr><td valign="top" width="149"><font style="color:#797979; font-family: Georgia, ',@Times_New_Roman,', serif; font-size: 13px;">',@Last_Chance_Sale_Title,'</font></td></tr></table></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="147"><tr><td style="font-family:Arial, Helvetica, sans-serif; font-size: 10px; "><a href="',@Last_Chance_Sale_Button_Redirect,'" style="text-decoration:none;"><font color="#f96b42"><b> SHOP NOW</b></font></a></td></tr></table></td></tr></table></td>')    
+		SET @TACA_Key_Last_Chance_Sale = concat('TACA_Key_Last_Chance_Sale',@row_number)
+		SET @Last_Chance_Sale = concat('<td valign="top" width="149"><table border="0" cellspacing="0" cellpadding="0" width="149"><tr><td width="147" style="border:1px solid #c0bcae;"><a href="',@Last_Chance_Sale_Image_Redirect,'"><img src="',@Last_Chance_Sale_Image,'" alt="Last Chance',@row_number,'" style="display:block;" border="0" width="149" /></a></td></tr><tr><td width="149" height="7"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="149" height="42"><tr><td valign="top" width="149"><font style="color:#797979; font-family: Georgia, ',@Times_New_Roman,', serif; font-size: 13px;">',@Last_Chance_Sale_Title,'</font></td></tr></table></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="147"><tr><td style="font-family:Arial, Helvetica, sans-serif; font-size: 10px; "><a href="',@Last_Chance_Sale_Button_Redirect,'" style="text-decoration:none;"><font color="#f96b42"><b> SHOP NOW</b></font></a></td></tr></table></td></tr></table></td>')    
 	]%%  
                                 
 	%%= TreatAsContentArea(@TACA_Key_Last_Chance_Sale, @Last_Chance_Sale) =%%
@@ -1818,14 +1790,14 @@ ENDIF
 	%%[ else ]%%
 		<td width="149">&nbsp;
 		</td> 
-	%%[ endif ]%%
+	%%[ endIF ]%%
     
-	%%[ if mod(@cell_number , 4) != 0 then ]%% 
+	%%[ IF mod(@cell_number , 4) != 0 then ]%% 
 	<td width="18">&nbsp;
 	</td>
-	%%[ endif ]%%
+	%%[ endIF ]%%
 
-%%[ Set @row_number = Add(@row_number,1)
+%%[ SET @row_number = Add(@row_number,1)
     next @cell_number 
 ]%%  
 
