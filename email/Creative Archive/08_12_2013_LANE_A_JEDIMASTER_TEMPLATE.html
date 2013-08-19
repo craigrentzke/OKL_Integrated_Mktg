@@ -1690,7 +1690,7 @@ next @i
 
 %%[
 SET @last_chance_date = FORMAT(DateAdd(@day_of_sale,"-1","D"),"MM/dd/yyyy")
-SET @last_chance_date = Concat(@last_chance_date," 06:00:00 PM") 
+SET @last_chance_date = Concat(@last_chance_date," 08:00:00 AM") 
 Set @rows = LookupOrderedRows("Sales -- PRODUCTION",0,"ended_on desc","started_on", @last_chance_date)
 Set @total_sales = RowCount(@rows)
 Set @row_number = 1
