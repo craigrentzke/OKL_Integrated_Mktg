@@ -3,14 +3,14 @@
 %%[
 <!-- TEMPLATE VARIABLE DECLARATION START -->
 /* SET day and time */
-SET @Day_of_Sale = "08/14/2013"
+SET @Day_of_Sale = "08/20/2013"
 
 SET @akamaifolder_month = Substring(@Day_of_Sale,1,2)
 SET @akamaifolder_day = Substring(@Day_of_Sale,4,2)
 SET @akamaifolder = Concat(@akamaifolder_month,@akamaifolder_day,"13")
 
 SET @SentDate = Now()
-SET @Email_Type = "am"
+SET @Email_Type = "pm"
 SET @date_str= xtshortdate
 
 SET @RPdate = Now()
@@ -1731,7 +1731,7 @@ SET @akamai_last_folder_day = Substring(@last_chance_date,4,2)
 SET @akamai_last_folder = Concat(@akamai_last_folder_month,@akamai_last_folder_day,"13")
 
 SET @last_chance_date = Concat(@last_chance_date," 08:00:00 AM")
-Set @rows = LookupOrderedRows("Sales -- PRODUCTION",0,"name desc","started_on", @last_chance_date)
+Set @rows = LookupOrderedRows("Sales -- PRODUCTION",0,"ended_on desc","started_on", @last_chance_date)
 Set @total_sales = RowCount(@rows)
 Set @row_number = 1
            
@@ -1758,7 +1758,7 @@ for @cell_number = 1 to 4 do
 
 	
 		SET @row = Row(@rows,@row_number) 
-		SET @URL_LC_LIFestyle = Concat(Field(@row, 'link'),'?utm_source=Daily&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@day_of_sale,'.',_subscriberkey,'&utm_term=Last_Chance.Image.',@row_number,'.',Field(@row, 'sales_event_id'))
+		SET @URL_LC_Lifestyle = Concat(Field(@row, 'link'),'?utm_source=Daily&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@day_of_sale,'.',_subscriberkey,'&utm_term=Last_Chance.Image.',@row_number,'.',Field(@row, 'sales_event_id'))
 		SET @URL_LC_Button = Concat(Field(@row, 'link'),'?utm_source=Daily&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@day_of_sale,'.',_subscriberkey,'&utm_term=Last_Chance.Image.',@row_number,'.',Field(@row, 'sales_event_id'))
 		SET @Last_Chance_Sale_Image = Field(@row, 'image')
         
@@ -1769,7 +1769,7 @@ for @cell_number = 1 to 4 do
         SET @Last_Chance_Sale_Image = Replace(@Last_Chance_Sale_Image, "http://onekingslane1-a.akamaihd.net/", @last_chance_akamai)
         SET @Last_Chance_Sale_Image = Replace(@Last_Chance_Sale_Image, "?$w149_h102$", "_extra_small.jpg")
         
-      	SET @Last_Chance_Sale_Title = Field(@row, 'name')
+      	SET @Last_Chance_Sale_Title = Field(@row, 'description')
         
         <!--PUT SYMBOL PROCESSING HERE-->
         SET @Last_Chance_Sale_Title = Replace(@Last_Chance_Sale_Title, "ç", "&ccedil;")
@@ -1779,7 +1779,7 @@ for @cell_number = 1 to 4 do
         <!--END SYMBOL PROCESSING HERE-->
         
 		SET @Last_Chance_Sale_Button_Redirect = RedirectTo(v(@URL_LC_Button))   
-		SET @Last_Chance_Sale_Image_Redirect = RedirectTo(v(@URL_LC_LIFestyle))
+		SET @Last_Chance_Sale_Image_Redirect = RedirectTo(v(@URL_LC_Lifestyle))
                                     
 		SET @TACA_Key_Last_Chance_Sale = concat('TACA_Key_Last_Chance_Sale',@row_number)
 		SET @Last_Chance_Sale = concat('<td valign="top" width="149"><table border="0" cellspacing="0" cellpadding="0" width="149"><tr><td width="147" style="border:1px solid #c0bcae;"><a href="',@Last_Chance_Sale_Image_Redirect,'"><img src="',@Last_Chance_Sale_Image,'" alt="Last Chance',@row_number,'" style="display:block;" border="0" width="149" /></a></td></tr><tr><td width="149" height="7"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="149" height="42"><tr><td valign="top" width="149"><font style="color:#797979; font-family: Georgia, ',@Times_New_Roman,', serif; font-size: 13px;">',@Last_Chance_Sale_Title,'</font></td></tr></table></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="147"><tr><td style="font-family:Arial, Helvetica, sans-serif; font-size: 10px; "><a href="',@Last_Chance_Sale_Button_Redirect,'" style="text-decoration:none;"><font color="#f96b42"><b> SHOP NOW</b></font></a></td></tr></table></td></tr></table></td>')    
@@ -1790,12 +1790,12 @@ for @cell_number = 1 to 4 do
 	%%[ else ]%%
 		<td width="149">&nbsp;
 		</td> 
-	%%[ endIF ]%%
+	%%[ endif ]%%
     
-	%%[ IF mod(@cell_number , 4) != 0 then ]%% 
+	%%[ if mod(@cell_number , 4) != 0 then ]%% 
 	<td width="18">&nbsp;
 	</td>
-	%%[ endIF ]%%
+	%%[ endif ]%%
 
 %%[ SET @row_number = Add(@row_number,1)
     next @cell_number 
@@ -1864,7 +1864,7 @@ CONTACT US</font></a>  &nbsp; | &nbsp; <a href="https://www.onekingslane.com/cor
 </table>
 </td>
 </tr>
-</table> 
+</table>
 </tr>
 
-<tr><td height="30"></td></tr></table></body></html> 
+<tr><td height="30"></td></tr></table></body></html>
