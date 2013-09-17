@@ -104,6 +104,7 @@ SET @RPpixel = Concat("http://pixel.monitor1.returnpath.net/pixel.gif?r=6899c41d
 /* SET variables from sendable DE */
 SET @Customer_ID = customer_id
 SET @sbs_Segment = sbs_segment
+SET @core_segment = core_segment
 SET @Bucket = Bucket
 SET @Count = count
 
@@ -411,7 +412,7 @@ IF IsNull(@total_daily_sales) OR Length(@total_daily_sales) == 0 THEN
 ENDIF
 ]%%
 <title><font color="#ffffff" face="Arial, Helvetica,sans-serif" size="1">
-%%= v(@preview_copy) =%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+%%= v(@preview_copy) =%%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </font></title>
 
 </head>
@@ -1446,13 +1447,40 @@ SET @gIFt_card = concat('<td valign="top"><table border="0" cellspacing="0" cell
 ]%%
 <div style="display:none; font-size:1px; color:#FFFFFF;">%%=v(@preview_copy)=%%</div><table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><table class="container" width="650" border="0" cellspacing="0" cellpadding="0" align="center"><!-- Tracking Pixels --><tr><td><table cellpadding="0" cellspacing="0" border="0"><tr><td><img src="http://p.tellapart.com/tem?c=%%=v(@campaign_path)=%%&src=MQvTZrFduqGP&suid=%%=v(@customer_id)=%%&edate=%%=v(@milli_dIFference)=%%&ehash=%%=MD5(emailaddr)=%%" height="1" width="1" border="0" /></td><td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=0" height="1" width="1" border="0" /></td><td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=1" height="1" width="1" border="0" /></td><td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=2" height="1" width="1" border="0" /></td><td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=3" height="1" width="1" border="0" /></td><td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=4" height="1" width="1" border="0" /></td><td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=5" height="1" width="1" border="0" /></td><td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=6" height="1" width="1" border="0" /></td><td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=7" height="1" width="1" border="0" /></td><td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=8" height="1" width="1" border="0" /></td><td><img src="http://p.tellapart.com/epx?src=MQvTZrFduqGP&px=9" height="1" width="1" border="0" /></td><td>%%[IF @dayofweek == "Wednesday" or @dayofweek == "Saturday" THEN]%%<img src="%%=RedirectTo(@RPpixel)=%%" height="1" width="1" style="border:0" />%%[ENDIF]%%</td><td><custom name="opencounter" type="tracking"></td></tr></table></td></tr>
                 <!-- Header -->
-                %%= TreatAsContentArea("TACA_Key_Header1",@daily_header) =%%
-                <!-- Banners -->
-                %%[ IF @count == 1 then]%%
-                	%%= TreatAsContentArea("TACA_Key_Pref_Banner",@pref_banner) =%%
-                %%[ elseif @daily_banner_display == "yes" then ]%%
-                	%%= TreatAsContentArea("TACA_Key_Daily_Banner",@daily_banner) =%%
-                %%[ endif ]%%
+               %%= TreatAsContentArea("TACA_Key_Header1",@daily_header) =%%
+
+
+%%[ IF @core_segment == "SARLA" or @core_segment == "SARLAI" or @core_segment ==  "SARHA" or @core_segment ==  "SARHI" or @core_segment ==  "SLA" or @core_segment ==  "SLI" or @core_segment == "SHA" or @core_segment == "SHI" then ]%%
+
+				<tr>
+                	<td class="photo" style="padding-bottom:25px;"><a href="https://www.onekingslane.com/"><img src="https://okl.scene7.com/is/image/OKL/banner_20_offer_09_16_pm?$w650_gif$" alt="20% off banner" border="0" style="display:block;" /></a>
+        			</td>
+                </tr>
+
+
+
+%%[ELSEIF @sbs_segment == "M" or @sbs_segment == "S1" then ]%%
+
+				<tr>
+                	<td class="photo" style="padding-bottom:25px;"><a href="https://www.onekingslane.com/"><img src="https://okl.scene7.com/is/image/OKL/banner_30_offer?$w650_gif$" alt="30% off banner" border="0" style="display:block;" /></a>
+        			</td>
+                </tr>
+
+
+%%[ ELSEIF @count == 1 then]%%
+%%= TreatAsContentArea("TACA_Key_Pref_Banner",@pref_banner) =%%
+
+%%[ else @daily_banner_display == "yes" then ]%%
+%%= TreatAsContentArea("TACA_Key_Daily_Banner",@daily_banner) =%%
+%%[ endIF ]%%
+
+
+
+
+<tr>
+    	<td>
+        	<table border="0" cellspacing="0" cellpadding="0" width="650" align="center">
+            	<tr>
                 <!-- Sales -->
                 <tr>
                     <td align="left" valign="top" style="padding-bottom:25px;">
@@ -1687,9 +1715,9 @@ SET @gIFt_card = concat('<td valign="top"><table border="0" cellspacing="0" cell
                             
                             %%[IF @Layout == "2x2" THEN]%%
                                 %%[IF @i == 2 OR @i == 4 OR @i == 6 OR @i == 8 OR @i == 10 OR @i == 12 OR @i == 14 OR @i == 16 OR @i == 18 THEN]%%
-                                 </tr></table></td></tr><tr><td style="padding-top:25px;"><table cellpadding="0" cellspacing="0" border="0" align="center" width="650"><tr>
+                                 </tr></table></td></tr><tr><td style="padding-top:16px;"><table cellpadding="0" cellspacing="0" border="0" align="center" width="650"><tr>
                                  %%[ELSE]%%
-                                 <td width="50" height="25"></td>
+                                 <td width="50" class="drop_noline" height="16"></td>
                                 %%[ENDIF]%%  
                             %%[ELSE]%%
                                 %%[IF @i == 2 OR @i == 5 OR @i == 7 OR @i == 10 OR @i == 12 OR @i == 15 OR @i == 17 THEN]%%
@@ -1741,6 +1769,8 @@ SET @gIFt_card = concat('<td valign="top"><table border="0" cellspacing="0" cell
                                             	<table border="0" cellpadding="0" cellspacing="0">
                                                     <tr>
                                                         <td style="padding-right:15px;">
+                                                        
+                                                        
 %%[ 
 for @cell_number = 1 to 4 do
 ]%% 
@@ -1790,12 +1820,13 @@ NEXT @counter
 ENDIF
 
 ENDIF
+
         
 		Set @Last_Chance_Sale_Button_Redirect = RedirectTo(v(@URL_LC_Button))   
 		Set @Last_Chance_Sale_Image_Redirect = RedirectTo(v(@URL_LC_Lifestyle))
                                     
 		Set @TACA_Key_Last_Chance_Sale = concat('TACA_Key_Last_Chance_Sale',@row_number)
-		Set @Last_Chance_Sale = concat('<table cellpadding="0" cellspacing="0" border="0" width="149"><tr><td><table cellpadding="0" cellspacing="0" border="0"><tr><td style="border:solid; border-width:1px; border-color:#c0bcae;" id="mobile-hidden"><a href="',@Last_Chance_Sale_Image_Redirect,'"><img src="',@Last_Chance_Sale_Image,'" alt="Last Chance',@row_number,'" style="display:block;" border="0" width="149" /></a></td></tr><tr><td class="photo" id="new_photo"  style="width:0; overflow:hidden;float:left; disply:none; visibility:hidden; mso-hide:all; height:0;  "><a href="',@Last_Chance_Sale_Image_Redirect,'"><img src="',@Last_Chance_Sale_Image2,'" alt="Last Chance',@row_number,'" style="width:0; overflow:hidden;float:left; disply:none; visibility:hidden; mso-hide:all; height:0; " border="0" id="new_photo" /></a></td></tr></table></td></tr><tr><td class="endingsoontext" valign="top" style="color:#797979; font-family: Georgia, ',@Times_New_Roman,', serif; font-size: 13px; padding-top:7px; padding-bottom:20px; height:42px;" id="endingsoontext" >',@Last_Chance_Sale_Title,'</td></tr><tr><td style="font-family:Arial, Helvetica, sans-serif; font-size: 10px;" id="endingsoonshopnow"><a href="',@Last_Chance_Sale_Button_Redirect,'" style="text-decoration:none; color:#f96b42; font-weight:bold;">SHOP NOW</a></td></tr></table>')    
+		Set @Last_Chance_Sale = concat('<table cellpadding="0" cellspacing="0" border="0" width="149"><tr><td valign="top"><table cellpadding="0" cellspacing="0" border="0"><tr><td style="border:solid; border-width:1px; border-color:#c0bcae;" id="mobile-hidden" valign="top"><a href="',@Last_Chance_Sale_Image_Redirect,'"><img src="',@Last_Chance_Sale_Image,'" alt="Last Chance',@row_number,'" style="display:block;" border="0" width="149" /></a></td></tr><tr><td class="photo" id="new_photo"  style="width:0; overflow:hidden;float:left; disply:none; visibility:hidden; mso-hide:all; height:0;  "><a href="',@Last_Chance_Sale_Image_Redirect,'"><img src="',@Last_Chance_Sale_Image2,'" alt="Last Chance',@row_number,'" style="width:0; overflow:hidden;float:left; disply:none; visibility:hidden; mso-hide:all; height:0; " border="0" id="new_photo" /></a></td></tr></table></td></tr><tr><td class="endingsoontext" valign="top" style="color:#797979; font-family: Georgia, ',@Times_New_Roman,', serif; font-size: 13px; padding-top:7px; height:42px;" id="endingsoontext" height="42">',@Last_Chance_Sale_Title,'</td></tr><tr><td style="font-family:Arial, Helvetica, sans-serif; font-size: 10px;" id="endingsoonshopnow"><a href="',@Last_Chance_Sale_Button_Redirect,'" style="text-decoration:none; color:#f96b42; font-weight:bold;">SHOP NOW</a></td></tr></table>')    
 	]%%  
                                 
 	%%= TreatAsContentArea(@TACA_Key_Last_Chance_Sale, @Last_Chance_Sale) =%%
@@ -1847,5 +1878,46 @@ ENDIF
                 <!-- @daily_upcoming_events -->
                 %%= TreatAsContentArea("TACA_Key_Daily_Upcoming_Events",@daily_upcoming_events) =%% 
                 <!-- Footer Content -->
+                
 <tr>
-<td><table cellpadding="0" cellspacing="0" border="0" align="center"><tr><td style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px; padding-top:7px; padding-bottom:15px;" align="center">2013 One Kings Lane&reg; All rights reserved.  One Kings Lane and the elephant logo are registered trademarks of One Kings Lane Inc.<br /><br /><a href="https://www.onekingslane.com/privacy?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Privacy_Policy.1" style="text-decoration:none; color:#333333; font-size: 11px;">PRIVACY POLICY</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.onekingslane.com/contact-us?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Contact_Us.1"  style="text-decoration:none; color:#333333; font-size: 11px;">CONTACT US</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.onekingslane.com/corporate/careers/?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Hiring.1"  style="text-decoration:none; color:#333333; font-size: 11px;">HIRING</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="%%=RedirectTo(v(@URL_Unsubscribe))=%%"  style="text-decoration:none; color:#333333; font-size: 11px;">UNSUBSCRIBE</a></td></tr><tr><td><table cellpadding="0" cellspacing="0" border="0" align="center"><tr><td style="padding-right:5px;"><a href="http://twitter.com/onekingslane"><img src="https://okl.scene7.com/is/image/OKL/twitter_02.062012.gif?fmt=gif&wid=32" alt="OKL Twitter" border="0" width="32" height="30" /></a></td><td style="padding-right:5px;"><a href="http://www.facebook.com/OneKingsLane"><img src="https://okl.scene7.com/is/image/OKL/fb_02.062012?fmt=gif&wid=32" alt="OKL Facebook" border="0" width="32" height="30" /></a></td><td><a href="http://pinterest.com/onekingslane/"><img src="https://okl.scene7.com/is/image/OKL/iphone_02.062012.gif?fmt=gif&wid=32" border="0" width="32" height="30" /></a></td><td style="padding-right:3px;"><a href="http://itunes.apple.com/us/app/one-kings-lane/id403827899"><img src="https://okl.scene7.com/is/image/OKL/iphone_02.222012b?fmt=gif&wid=32" border="0" width="32" height="34" /></a></td></tr></table></td></tr></table></td></tr></table></td></tr></table></body></html>
+<td align="center">
+
+
+                
+  %%[
+
+if @core_segment == "SARLA" or @core_segment == "SARLAI" or @core_segment ==  "SARHA" or @core_segment ==  "SARHI" or @core_segment ==  "SLA" or @core_segment ==  "SLI" or @core_segment == "SHA" or @core_segment == "SHI"
+
+then
+
+]%%
+
+<font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px;">
+*20% off offer valid on any entire order of merchandise from One Kings Lane, excluding taxes and shipping. One offer per natural person. May not be used in conjunction with other promotional offers or referral credits, and is not transferable. If you return an item purchased using the discount code, you may not apply the discount to any future purchase. Not valid for use on prior purchases.  One Kings Lane may, in its discretion, rescind the offer in the event our Terms of Use are violated or to prevent fraud. Expires 09/17/13, at 11:59pm PT.</font><br /><br />
+
+%%[
+
+ENDIF
+
+]%%
+
+%%[
+	IF @sbs_segment == "M" or @sbs_segment == "S1"
+
+	then
+]%%
+
+<font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px;">
+*30% off offer valid on any entire order of merchandise from One Kings Lane, excluding taxes and shipping. One offer per natural person. May not be used in conjunction with other promotional offers or referral credits, and is not transferable. If you return an item purchased using the discount code, you may not apply the discount to any future purchase. Not valid for use on prior purchases.  One Kings Lane may, in its discretion, rescind the offer in the event our Terms of Use are violated or to prevent fraud. Expires 09/17/13, at 11:59pm PT.</font><br /><br />
+
+%%[
+
+ENDIF
+
+]%%              
+                
+   </td>
+</tr>             
+                
+<tr>
+<td align="center"><table cellpadding="0" cellspacing="0" border="0" align="center"><tr><td style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px; padding-top:7px; padding-bottom:15px;" align="center">2013 One Kings Lane&reg; All rights reserved. One Kings Lane and the elephant logo are registered trademarks of One Kings Lane Inc.<br /><br /><font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px;">Tastemaker Tag Sales&trade; is a trademark of One Kings Lane Inc.  Corp.  Address: 1355 Market Street Suite 400, San Francisco, CA 94103</font><BR><BR><a href="https://www.onekingslane.com/privacy?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Privacy_Policy.1" style="text-decoration:none; color:#333333; font-size: 11px;">PRIVACY POLICY</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.onekingslane.com/contact-us?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Contact_Us.1"  style="text-decoration:none; color:#333333; font-size: 11px;">CONTACT US</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.onekingslane.com/corporate/careers/?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%.%%_subscriberkey%%&utm_term=Footer.Hiring.1"  style="text-decoration:none; color:#333333; font-size: 11px;">HIRING</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="%%=RedirectTo(v(@URL_Unsubscribe))=%%"  style="text-decoration:none; color:#333333; font-size: 11px;">UNSUBSCRIBE</a></td></tr><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" align="center"><tr><td style="padding-right:5px;"><a href="http://twitter.com/onekingslane"><img src="https://okl.scene7.com/is/image/OKL/twitter_02.062012.gif?fmt=gif&wid=32" alt="OKL Twitter" border="0" width="32" height="30" /></a></td><td style="padding-right:5px;"><a href="http://www.facebook.com/OneKingsLane"><img src="https://okl.scene7.com/is/image/OKL/fb_02.062012?fmt=gif&wid=32" alt="OKL Facebook" border="0" width="32" height="30" /></a></td><td><a href="http://pinterest.com/onekingslane/"><img src="https://okl.scene7.com/is/image/OKL/iphone_02.062012.gif?fmt=gif&wid=32" border="0" width="32" height="30" /></a></td><td style="padding-right:3px;"><a href="http://itunes.apple.com/us/app/one-kings-lane/id403827899"><img src="https://okl.scene7.com/is/image/OKL/iphone_02.222012b?fmt=gif&wid=32" border="0" width="32" height="34" /></a></td></tr></table></td></tr></table></td></tr></table></td></tr></table></body></html>
