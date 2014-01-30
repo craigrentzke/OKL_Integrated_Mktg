@@ -85,7 +85,7 @@ body[yahoo] .photo  { width:100% !important; height:auto !important; border-styl
 %%[
 <!-- TEMPLATE VARIABLE DECLARATION START -->
 /* SET day and time */
-SET @Day_of_Sale = "02/01/2014"
+SET @Day_of_Sale = "01/31/2014"
 SET @SentDate = Now()
 SET @Email_Type = "am"
 SET @date_str= xtshortdate
@@ -1135,20 +1135,6 @@ SET @daily_banner_linkb = '?utm_source=Daily&utm_medium=Email&utm_campaign=%%job
 SET @daily_banner_link = Concat(@daily_banner_linka, @daily_banner_linkb)
 SET @daily_banner_width = "650"
 
-SET @downstairs_banner_link_new = 'https://www.onekingslane.com/sales/15337?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Banner.NUEx_Downstairs_New_Banner.1'
-SET @downstairs_banner_display_new = "no"
-
-SET @downstairs_banner_link_old = 'https://www.onekingslane.com/sales/15337?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Banner.NUEx_Downstairs_Old_Banner.1'
-SET @downstairs_banner_display_old = "no"
-
-SET @RAF_banner_link = 'https://www.onekingslane.com/invite?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Banner.NUEx_RAF_Banner.1'
-SET @RAF_banner_display = "no"
-
-SET @pinterest_link = 'https://www.onekingslane.com/brands/pinterest?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%= v(@date_str) =%%&utm_term=Banner.NUEx_Pinterest_Banner.1'
-SET @pinterest_display = "no"
-
-SET @social_display = "no"
-
 ]%%
 
 
@@ -1173,22 +1159,22 @@ SET @URL_Unsubscribe = Concat('https://www.onekingslane.com/account/email-prefer
 %%[
 
 	SET @In_Program_Banner_Content = concat('<tr>
-                	<td class="photo" style="padding-bottom:20px;"><a href="https://www.onekingslane.com/brands/shipping-promo"><img src="',@In_Program_Banner,'" alt="OKL Banner" border="0" style="display:block;" /></a>
+                	<td class="photo" style="padding-bottom:20px;"><a href="https://www.onekingslane.com/"><img src="',@In_Program_Banner,'" alt="OKL Banner" border="0" style="display:block;" /></a>
         			</td>
                 </tr>')
                 
     SET @Not_In_Program_Banner_Content = concat('<tr>
-                	<td class="photo" style="padding-bottom:20px;"><a href="https://www.onekingslane.com/brands/shipping-promo"><img src="',@Not_In_Program_Banner,'" alt="OKL Banner" border="0" style="display:block;" /></a>
+                	<td class="photo" style="padding-bottom:20px;"><a href="https://www.onekingslane.com/"><img src="',@Not_In_Program_Banner,'" alt="OKL Banner" border="0" style="display:block;" /></a>
         			</td>
                 </tr>')
                 
                 SET @In_Program_Prefooter_Content = concat('<tr>
-                    <td class="photo" align="center" width="650"><a href="https://www.onekingslane.com/brands/shipping-promo"><img src="',@In_Program_Prefooter,'" alt="One Kings Lane Pre-footer Announcement" style="display:block;" border="0" /></a>
+                    <td class="photo" align="center" width="650"><a href="https://www.onekingslane.com/"><img src="',@In_Program_Prefooter,'" alt="One Kings Lane Pre-footer Announcement" style="display:block;" border="0" /></a>
                     </td>
                 </tr>')
                 
                 SET @Not_In_Program_Prefooter_Content = concat('<tr>
-                    <td class="photo" align="center" width="650"><a href="https://www.onekingslane.com/brands/shipping-promo"><img src="',@Not_In_Program_Prefooter,'" alt="One Kings Lane Pre-footer Announcement" style="display:block;" border="0" /></a>
+                    <td class="photo" align="center" width="650"><a href="https://www.onekingslane.com/brands/"><img src="',@Not_In_Program_Prefooter,'" alt="One Kings Lane Pre-footer Announcement" style="display:block;" border="0" /></a>
                     </td>
                 </tr>')
 
@@ -1209,13 +1195,6 @@ SET @URL_Unsubscribe = Concat('https://www.onekingslane.com/account/email-prefer
 	
 	ENDIF
 ]%%
-
-
-
-
-
-
-
 
 %%[
 
