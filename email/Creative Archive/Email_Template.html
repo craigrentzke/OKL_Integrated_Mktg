@@ -85,7 +85,7 @@ body[yahoo] .photo  { width:100% !important; height:auto !important; border-styl
 %%[
 <!-- TEMPLATE VARIABLE DECLARATION START -->
 /* SET day and time */
-SET @Day_of_Sale = "02/04/2014"
+SET @Day_of_Sale = "01/31/2014"
 SET @SentDate = Now()
 SET @Email_Type = "am"
 SET @date_str= xtshortdate
@@ -1220,17 +1220,7 @@ SET @daily_upcoming_events = concat('<tr>
 ]%%
 
 
-%%[
-      IF @daily_prefooter_format == "jpg" THEN
-      
-          SET @daily_prefooter = concat('<tr><td height="20"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="652" align="center"><tr><td align="center"><a href="',@daily_prefooter_link,'"><img src="https://okl.scene7.com/is/image/OKL/',@daily_prefooter,'?$w650_jpg$" alt="One Kings Lane Pre-footer Announcement" style="display:block;" border="0" /></a></td></tr></table></td></tr>')
-          
-      ELSE
-      
-          SET @daily_prefooter = concat('<tr><td height="20"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="652" align="center"><tr><td align="center"><a href="',@daily_prefooter_link,'"><img src="https://okl.scene7.com/is/image/OKL/',@daily_prefooter,'?$w650_gif$" alt="One Kings Lane Pre-footer Announcement" style="display:block;" border="0" /></a></td></tr></table></td></tr>')
-      
-      ENDIF
-]%%
+
 
 
 
@@ -1480,24 +1470,24 @@ IF @free_shipping_days_left == 0 THEN ]%%
 %%[ELSEIF @free_shipping_days_left == -10 THEN ]%%
 	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Countdown10Days?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
 
-%%[ELSEIF @Daily_Banner_Name == "shipping" THEN
+%%[ELSEIF @Daily_Banner_Name == "scoshipping" THEN
 	IF @today_date >= @free_shipping_start_date AND @today_date <= @free_shipping_end_date THEN
     /* In Program */ ]%%
     	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Ongoing?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>    
     
-    %%[ELSEIF  @today_date >= @free_shipping_end_date THEN
-    /* Expired */ ]%%
-    	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Expired?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr> 
-        
-   %%[ ELSE
+   %%[ ELSEIF  @free_shipping_end_date == "" THEN
     /* Out of Program */
     	IF @today_date <= "2/24/2014 11:59 PM" THEN ]%%
         	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Launch?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr> 
         %%[ELSE ]%%
         	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Out?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr> 
-        %%[ENDIF
+        %%[ENDIF ]%%
+        
+    %%[ELSEIF  @today_date >= @free_shipping_end_date THEN
+    /* Expired */ ]%%
+    	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Expired?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>     
     
-    ENDIF
+    %%[ENDIF
     
 ELSE
 	IF @daily_banner_display == "yes" then
@@ -1519,7 +1509,7 @@ ENDIF
 
 ]%%
 
-%%=v(@free_shipping_end_date)=%% --- %%=v(@free_shipping_days_left)=%%
+
 <tr>
     	<td>
         	<table border="0" cellspacing="0" cellpadding="0" width="650" align="center">
@@ -1762,6 +1752,7 @@ IF @SKU == @fittysen1 then ]%%
 next @i    
 ]%%
                             </tr>
+
                			 </table>
                 	</td>
                 </tr>
@@ -1870,27 +1861,51 @@ for @cell_number = 1 to 4 do
     next @cell_number 
 ]%%  
                 <!-- Prefooter banner -->
-                %%[ if @count == 1 then]%%
-				%%= TreatAsContentArea("TACA_Key_Pref_Banner",@pref_banner) =%%
-                %%[ELSE]%%
-                    %%[IF @today_date >= @free_shipping_start_date AND @today_date <= @free_shipping_end_date THEN]%%
-                        %%[IF @In_Program_Prefooter != "" THEN]%%
-                            %%= TreatAsContentArea("In_Program_Prefooter_Content",@In_Program_Prefooter_Content) =%%
-                        %%[ELSE]%%
-                            %%[ if @prefooter_display == "yes" then ]%%
-                                %%= TreatAsContentArea("TACA_Key_Daily_Prefooter",@daily_prefooter) =%%
-                            %%[ endif ]%%
-                        %%[ENDIF]%%
-                    %%[ELSE]%%
-                        %%[IF @Not_In_Program_Prefooter != "" THEN]%%
-                            %%= TreatAsContentArea("Not_In_Program_Prefooter_Content",@Not_In_Program_Prefooter_Content) =%% 
-                        %%[ELSE]%%
-                            %%[ if @prefooter_display == "yes" then ]%%
-                                %%= TreatAsContentArea("TACA_Key_Daily_Prefooter",@daily_prefooter) =%%
-                            %%[ endif ]%%
-                        %%[ENDIF]%%
-                    %%[ENDIF]%% 
-                %%[ endif ]%%   
+                
+                
+               
+%%[ if @count == 1 then]%%
+	%%= TreatAsContentArea("TACA_Key_Pref_Banner",@pref_banner) =%%             
+%%[ELSEIF @Daily_Prefooter == "scoshipping" THEN
+	IF @today_date >= @free_shipping_start_date AND @today_date <= @free_shipping_end_date THEN
+    /* In Program */ ]%%
+    	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Ongoing?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>    
+    
+   %%[ ELSEIF  @free_shipping_end_date == "" THEN
+    /* Out of Program */
+    	IF @today_date <= "2/24/2014 11:59 PM" THEN ]%%
+        	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Launch?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr> 
+        %%[ELSE ]%%
+        	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Out?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr> 
+        %%[ENDIF]%%
+        
+    %%[ELSEIF  @today_date >= @free_shipping_end_date THEN
+    /* Expired */ ]%%
+    	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Expired?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>     
+    
+    %%[ENDIF
+    
+ELSE ]%%
+%%[
+      IF @daily_prefooter_format == "jpg" THEN]%%
+      
+          <tr><td height="20"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="652" align="center"><tr><td align="center"><a href="%%=RedirectTo(@daily_prefooter_link)=%%"><img src="https://okl.scene7.com/is/image/OKL/%%=v(@daily_prefooter)=%%?$w650_jpg$" alt="One Kings Lane Pre-footer Announcement" style="display:block;" border="0" /></a></td></tr></table></td></tr>
+          
+      %%[ELSE]%%
+      
+         <tr><td height="20"></td></tr><tr><td><table border="0" cellspacing="0" cellpadding="0" width="652" align="center"><tr><td align="center"><a href="%%=RedirectTo(@daily_prefooter_link)=%%"><img src="https://okl.scene7.com/is/image/OKL/%%=v(@daily_prefooter)=%%?$w650_gif$" alt="One Kings Lane Pre-footer Announcement" style="display:block;" border="0" /></a></td></tr></table></td></tr>
+      
+ %%[   ENDIF
+]%% 
+
+%%[ENDIF]%%  
+
+
+          
+                
+                
+                
+    
                 <!-- @daily_upcoming_events -->
                 %%= TreatAsContentArea("TACA_Key_Daily_Upcoming_Events",@daily_upcoming_events) =%% 
                 <!-- Footer Content -->               
