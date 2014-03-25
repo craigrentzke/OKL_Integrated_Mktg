@@ -106,7 +106,7 @@ body[yahoo] .photo  { width:100% !important; height:auto !important; border-styl
 %%[
 <!-- TEMPLATE VARIABLE DECLARATION START -->
 /* SET day and time */
-SET @Day_of_Sale = "03/10/2014"
+SET @Day_of_Sale = "03/25/2014"
 SET @SentDate = Now()
 SET @Email_Type = "am"
 SET @date_str= xtshortdate
@@ -2385,32 +2385,32 @@ SET @daily_upcoming_events = concat('<tr>
 %%[
 
 IF @free_shipping_end_date != "" THEN
-	SET @free_shipping_days_left = DateDiff(@free_shipping_end_date,NOW(), "D")
+	SET @free_shipping_hours_left = DateDiff(NOW(), @free_shipping_end_date,"H")
 ELSE
-	SET @free_shipping_days_left = 999999
+	SET @free_shipping_hours_left = 999999
 ENDIF
 
-
-IF @free_shipping_days_left == 0 THEN ]%%
+]%%
+%%[IF @free_shipping_hours_left >= 0 AND @free_shipping_hours_left <= 24 THEN ]%%
 	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Countdown0Days?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
     %%[SET @Subject_Line = Concat("Free shipping expires tonight! ",@Subject_Line)]%%
 
-%%[ELSEIF @free_shipping_days_left == -1 THEN ]%%
+/*%%[ELSEIF @free_shipping_days_left == -1 THEN ]%%
 	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Countdown1Days?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
-    %%[SET @Subject_Line = Concat("1 day left for free shipping! ",@Subject_Line)]%%
+    %%[SET @Subject_Line = Concat("1 day left for free shipping! ",@Subject_Line)]%%*/
 
-%%[ELSEIF @free_shipping_days_left == -2 THEN ]%%
+%%[ELSEIF @free_shipping_hours_left >= 25 AND @free_shipping_hours_left <= 48 THEN ]%%
 	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Countdown2Days?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
     %%[SET @Subject_Line = Concat("2 days left for free shipping! ",@Subject_Line)]%%
 
-%%[ELSEIF @free_shipping_days_left == -3 THEN ]%%
+%%[ELSEIF @free_shipping_hours_left >= 49 AND @free_shipping_hours_left <= 72 THEN ]%%
 	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Countdown3Days?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
     %%[SET @Subject_Line = Concat("Free shipping expires soon! ",@Subject_Line)]%%
 
-%%[ELSEIF @free_shipping_days_left == -5 THEN ]%%
+%%[ELSEIF @free_shipping_hours_left >= 97 AND @free_shipping_hours_left <= 120 THEN ]%%
 	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Countdown5Days?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
 
-%%[ELSEIF @free_shipping_days_left == -10 THEN ]%%
+%%[ELSEIF @free_shipping_hours_left >= 241 AND @free_shipping_hours_left <= 264 THEN ]%%
 	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Countdown10Days?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
 
 %%[ELSEIF @Daily_Banner_Name == "scoshipping" THEN
@@ -3075,7 +3075,7 @@ for @cell_number = 1 to 4 do
     /* In Program */ ]%%
     	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Ongoing?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>    
     
-   %%[ ELSEIF  @free_shipping_end_date == "" THEN
+   %%[ ELSEIF  @free_shipping_end_date == "" OR Empty(@free_shipping_end_date) THEN
     /* Out of Program */
     	IF @today_date <= "2/24/2014 11:59 PM" THEN ]%%
         	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Launch?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr> 
