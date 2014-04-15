@@ -2408,9 +2408,6 @@ ENDIF
 	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Countdown0Days?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
     %%[SET @Subject_Line = Concat("Free shipping expires tonight! ",@Subject_Line)]%%
 
-%%[ELSEIF @free_shipping_days_left == -1 THEN ]%%
-	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Countdown1Days?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
-    %%[SET @Subject_Line = Concat("1 day left for free shipping! ",@Subject_Line)]%%*/
 
 %%[ELSEIF @free_shipping_hours_left >= 25 AND @free_shipping_hours_left <= 48 THEN ]%%
 	<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="http://www.onekingslane.com/brands/ship30"><img src="https://okl.scene7.com/is/image/OKL/EmailBanner_Countdown2Days?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
