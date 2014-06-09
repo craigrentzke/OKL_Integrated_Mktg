@@ -119,9 +119,9 @@ body[yahoo] .photo  { width:100% !important; height:auto !important; border-styl
 %%[
 <!-- TEMPLATE VARIABLE DECLARATION START -->
 /* SET day and time */
-SET @Day_of_Sale = "04/17/2014"
+SET @Day_of_Sale = "06/09/2014"
 SET @SentDate = Now()
-SET @Email_Type = "am"
+SET @Email_Type = "pm"
 SET @date_str= xtshortdate
 
 SET @RPdate = Now()
@@ -217,7 +217,7 @@ for @i = 1 to Rowcount(@Template_UI_Email_SBS) do
                                 SET @Preview_Copy = Field(@rowXX, 'Preview_Copy')
                                 SET @Daily_Banner_Display = Field(@rowXX, 'Daily_Banner_Display')
                                 SET @Daily_Banner_Name = Field(@rowXX, 'Daily_Banner_Name')
-                                SET @Daily_Banner_Linking = "yes"
+                                SET @Daily_Banner_Linking = Field(@rowXX, 'Daily_Banner_Linking')
                                 SET @Daily_Banner_Link = Field(@rowXX, 'Daily_Banner_Link')
                                 SET @Daily_Banner_Format = Field(@rowXX, 'Daily_Banner_Format')
                                 SET @Prefooter_Display = Field(@rowXX, 'Prefooter_Display')
@@ -470,7 +470,7 @@ for @i = 1 to Rowcount(@Template_UI_Email_SBS) do
                                 SET @Preview_Copy = Field(@rowXX, 'Preview_Copy')
                                 SET @Daily_Banner_Display = Field(@rowXX, 'Daily_Banner_Display')
                                 SET @Daily_Banner_Name = Field(@rowXX, 'Daily_Banner_Name')
-                                SET @Daily_Banner_Linking = "yes"
+                                SET @Daily_Banner_Linking = Field(@rowXX, 'Daily_Banner_Linking')
                                 SET @Daily_Banner_Link = Field(@rowXX, 'Daily_Banner_Link')
                                 SET @Daily_Banner_Format = Field(@rowXX, 'Daily_Banner_Format')
                                 SET @Prefooter_Display = Field(@rowXX, 'Prefooter_Display')
@@ -1104,6 +1104,8 @@ ELSE
 FOR @counter = 47 DOWNTO 2 DO
 IF ( (Substring(@title14,@counter,1) == " ") AND @flag == 0  ) THEN
 SET @flag = 1
+
+
 SET @index = Subtract(@counter,1)
 SET @title14 = Concat(Substring(@title14,1,@index),'...')
 
@@ -2421,25 +2423,23 @@ ENDIF
     
     %%[ENDIF
     
-ELSE
-  IF @daily_banner_display == "yes" then
-        IF @daily_banner_linking == "yes" THEN
-            IF @daily_banner_format == "jpg" THEN]%%
-                            <tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="%%=RedirectTo(@daily_banner_link)=%%"><img src="https://okl.scene7.com/is/image/OKL/%%=v(@daily_banner_name)=%%?$w650_jpg$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
-            %%[ELSE]%%
-                            <tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="%%=RedirectTo(@daily_banner_link)=%%"><img src="https://okl.scene7.com/is/image/OKL/%%=v(@daily_banner_name)=%%?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
-            %%[ENDIF
-        ELSE
-            IF @daily_banner_format == "jpg" THEN]%%
-                            <tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><img src="https://okl.scene7.com/is/image/OKL/%%=v(@daily_banner_name)=%%?$w650_jpg$" alt="OKL Banner" border="0" style="display:block;" /></td></tr><tr><td height="15"></td></tr></table></td></tr>
-            %%[ELSE]%%
-                            <tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><img src="https://okl.scene7.com/is/image/OKL/%%=v(@daily_banner_name)=%%?$w650_gif$" alt="OKL Banner" border="0" style="display:block;" /></td></tr><tr><td height="15"></td></tr></table></td></tr>
-            %%[ENDIF
-        ENDIF
-    ENDIF 
-ENDIF
+    
+ELSE]%%
 
-]%%
+	%%[IF @daily_banner_name != "" AND NOT EMPTY(@daily_banner_name) AND NOT ISNULL(@daily_banner_name) THEN]%%
+    
+    
+		%%[IF @daily_banner_linking == "yes" THEN]%%
+<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><a href="%%=RedirectTo(@daily_banner_link)=%%"><img src="https://okl.scene7.com/is/image/OKL/%%=v(@daily_banner_name)=%%?$w650_%%=v(@daily_banner_format)=%%$" alt="OKL Banner" border="0" style="display:block;" /></a></td></tr><tr><td height="15"></td></tr></table></td></tr>
+        
+        %%[ELSE]%%
+<tr><td><table border="0" cellspacing="0" cellpadding="0" width="650" align="center"><tr><td align="center"><img src="https://okl.scene7.com/is/image/OKL/%%=v(@daily_banner_name)=%%?$w650_%%=v(@daily_banner_format)=%%$" alt="OKL Banner" border="0" style="display:block;" /></td></tr><tr><td height="15"></td></tr></table></td></tr>
+        
+    	%%[ENDIF]%%
+
+    %%[ENDIF]%%
+
+%%[ENDIF]%%
 
 
 <tr>
