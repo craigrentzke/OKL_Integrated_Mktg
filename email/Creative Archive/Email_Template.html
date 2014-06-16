@@ -119,9 +119,9 @@ body[yahoo] .photo  { width:100% !important; height:auto !important; border-styl
 %%[
 <!-- TEMPLATE VARIABLE DECLARATION START -->
 /* SET day and time */
-SET @Day_of_Sale = "06/12/2014"
+SET @Day_of_Sale = "06/13/2014"
 SET @SentDate = Now()
-SET @Email_Type = "pm"
+SET @Email_Type = "am"
 SET @date_str= xtshortdate
 
 SET @RPdate = Now()
@@ -3193,9 +3193,12 @@ ELSE ]%%
                 
                 
     
-                <!-- @daily_upcoming_events -->
-                %%= TreatAsContentArea("TACA_Key_Daily_Upcoming_Events",@daily_upcoming_events) =%% 
+                         
                 <!-- Footer Content -->              
+
+%%[IF @Bucket >= "30" AND @Bucket <= "49" THEN ]%%
+
+
 <tr>
 <td align="center">
 <table cellpadding="0" cellspacing="0" border="0" align="center">
@@ -3308,14 +3311,41 @@ Inc. Corp. Address: 1355 Market Street Suite 400, San Francisco, CA 94103</a>
 <td align="center" style="font-family:Helvetica, Arial, sans-serif; font-size:11px;color:#999999; letter-spacing:1px; padding-bottom:70px;"><a href="%%=RedirectTo(v(@URL_Unsubscribe))=%%"  style="text-decoration:none; color:#999999; font-size: 11px;"><u>Update Email Preferences</u></a>
 </td></tr>
 </table></td></tr></table></td></tr></table>
+
+
+
+%%[ELSE]%%
+
+
+<tr>
+                    <td class="photo" style="padding-top:25px;" align="center"><span class="photo" style="padding-top:25px;"><a href="https://www.onekingslane.com/invite?utm_source=Daily&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=%%=v(@date_str)=%%.%%_subscriberkey%%.%%=v(@Email_Type)=%%&utm_term=A_GIFt_of_15_summer"><img src="https://okl.scene7.com/is/image/OKL/2013_DailyEmail_PreFooter?$w650_gif$" alt="A GIFt of $15" border="0" width="650" /></a></span></td>
+                </tr>               
+                
+                              
+<tr>
+<td align="center"><table cellpadding="0" cellspacing="0" border="0" align="center">
+<tr><td align="center"></td></tr><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" align="center"><tr><td style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px; padding-top:7px; padding-bottom:15px;" align="center">2014 One Kings Lane&reg; All rights reserved. One Kings Lane and the elephant logo are registered trademarks of One Kings Lane Inc.<br /><br /><font style="color:#333333; font-family:Helvetica, sans-serif, Arial; font-size: 10px;">Tastemaker Tag Sales&trade; is a trademark of One Kings Lane Inc.  Corp.  Address: 1355 Market Street Suite 400, San Francisco, CA 94103</font><BR><BR><a href="https://www.onekingslane.com/privacy?utm_source=Email&utm_medium=Launch&utm_campaign=OKLSA&utm_content=%%=v(@date_str)=%%.%%_subscriberkey%%.%%=v(@Email_Type)=%%&utm_term=Footer.Privacy_Policy.1" style="text-decoration:none; color:#333333; font-size: 11px;">PRIVACY POLICY</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.onekingslane.com/contact-us?utm_source=Email&utm_medium=Launch&utm_campaign=OKLSA&utm_content=%%=v(@date_str)=%%.%%_subscriberkey%%.%%=v(@Email_Type)=%%&utm_term=Footer.Contact_Us.1"  style="text-decoration:none; color:#333333; font-size: 11px;">CONTACT US</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.onekingslane.com/corporate/careers/?utm_source=Email&utm_medium=Launch&utm_campaign=OKLSA&utm_content=%%=v(@date_str)=%%.%%_subscriberkey%%.%%=v(@Email_Type)=%%&utm_term=Footer.Hiring.1"  style="text-decoration:none; color:#333333; font-size: 11px;">HIRING</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="%%=RedirectTo(v(@URL_Unsubscribe))=%%"  style="text-decoration:none; color:#333333; font-size: 11px;">UNSUBSCRIBE</a></td></tr><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" align="center"><tr><td style="padding-right:5px; padding-top:10px;"><a href="http://www.facebook.com/OneKingsLane" border="0"><img src="https://okl.scene7.com/is/image/OKL/spring-email-fb?fmt=gif&wid=32" alt="OKL Facebook" border="0" width="32" height="30" /></a></td><td style="padding-right:5px;padding-top:10px;"><a href="http://instagram.com/onekingslane" border="0"><img src="https://okl.scene7.com/is/image/OKL/spring-email-instagram?fmt=gif&wid=32" border="0" width="32" height="34" /></a></td><td style="padding-right:3px; padding-top:10px;"><a href="http://pinterest.com/onekingslane/" border="0"><img src="https://okl.scene7.com/is/image/OKL/spring-email-pinterest?fmt=gif&wid=32" border="0" width="32" height="30" /></a></td><td style="padding-right:3px; padding-top:10px;"><a href="http://twitter.com/onekingslane" border="0"><img src="https://okl.scene7.com/is/image/OKL/spring-email-twitter?fmt=gif&wid=32" alt="OKL Twitter" border="0" width="32" height="30" /></a></td></tr></table></td></tr></table></td></tr></table></td></tr></table></body></html>
+
+
+
+
+
+
+
+%%[ENDIF]%%
+
+
+
+
+
 <div itemscope itemtype="http://schema.org/EmailMessage">
-  <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="One Kings Lane"/>
-    <link itemprop="url" href="https://www.onekingslane.com/"/>
-    <link itemprop="url/googlePlus" href="https://plus.google.com/+onekingslane/"/>
-  </div>
-  <div itemprop="about" itemscope itemtype="http://schema.org/Offer">
-    <link itemprop="image" href="https://okl.scene7.com/is/image/OKL/SalesEvent_%%=v(@fittysen1)=%%_Lifestyle_1?wid=580"/>
-  </div>
+  <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="One Kings Lane"/>
+    <link itemprop="url" href="https://www.onekingslane.com/"/>
+    <link itemprop="url/googlePlus" href="https://plus.google.com/+onekingslane/"/>
+  </div>
+  <div itemprop="about" itemscope itemtype="http://schema.org/Offer">
+    <link itemprop="image" href="https://okl.scene7.com/is/image/OKL/SalesEvent_%%=v(@fittysen1)=%%_Lifestyle_1?wid=580"/>
+  </div>
 </div>
 </body></html>
